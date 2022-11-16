@@ -2,8 +2,8 @@
     <string name="app_name">AndroidProjectHomework</string>
     <string name="setting">MainActivity2</string>
     <string name="setting2">Clicked atim2 </string>
-    <string name="setting3">Clicked atim3 </string>
-    <string name="setting4">Clicked atim4 </string>
+    <string name="setting3">Go back </string>
+    <string name="setting4">Close app </string>
     <string name="hello_world">Hello world</string>
     <string name="hello_children">Hello Children</string>
 
