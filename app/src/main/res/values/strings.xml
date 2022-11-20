@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AndroidProjectHomework</string>
+    <string name="enter_your_name">Enter_your_name</string>
+    <string name="you_name">you name</string>
+    <string name="you_password">You_password</string>
+    <string name="have_a_nice_day">Have a nice day</string>
+    <string name="info" />
+    <string name="btn" />
+    <string name="message" />
+    <string name="btn_pos" />
+    <string name="btn_negative" />
+    <string name="text" />
+
 </resources>
