@@ -13,5 +13,6 @@
     <string name="you_login">You login</string>
     <string name="click_on_me">Click on me</string>
     <string name="enter_password">Enter password</string>
+    <string name="the_page_for_entering_the_application">The page for entering the application</string>
 
 </resources>

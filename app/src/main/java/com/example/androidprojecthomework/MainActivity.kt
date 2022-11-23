@@ -3,6 +3,7 @@ package com.example.androidprojecthomework
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -46,7 +47,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val house = HauseBuilder.Builder
+            .setFlors(3)
+            .setTerrece(false)
+            .setWindow(8)
+            .build()
+
+
         btn.setOnClickListener {
+
+            Log.w("housebuilder", "${house.howManyFlors()}${house.hasTerrace()}${house.howManyWindow()}")
+
             if(editText.text.toString().isEmpty()){
                 editText.error = "email can't be empty"
             }else if(editText2.text.toString().isEmpty()){
