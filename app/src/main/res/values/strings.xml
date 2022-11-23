@@ -10,5 +10,8 @@
     <string name="btn_pos" />
     <string name="btn_negative" />
     <string name="text" />
+    <string name="you_login">You login</string>
+    <string name="click_on_me">Click on me</string>
+    <string name="enter_password">Enter password</string>
 
 </resources>
