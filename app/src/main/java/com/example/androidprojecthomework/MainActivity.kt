@@ -32,17 +32,17 @@ class MainActivity : AppCompatActivity() {
 
 
         rb1.setOnClickListener {
-            if(rb1.isChecked){
+            if (rb1.isChecked) {
                 rb2.isChecked = false
-            }else{
+            } else {
                 rb1.isChecked = true
             }
         }
 
         rb2.setOnClickListener {
-            if(rb2.isChecked){
+            if (rb2.isChecked) {
                 rb1.isChecked = false
-            }else{
+            } else {
                 rb2.isChecked = true
             }
         }
@@ -50,17 +50,22 @@ class MainActivity : AppCompatActivity() {
         val house = HauseBuilder.Builder
             .setFlors(3)
             .setTerrece(false)
+            .setRooms(5)
             .setWindow(8)
             .build()
 
 
         btn.setOnClickListener {
+            editText.text.toString()
 
-            Log.w("housebuilder", "${house.howManyFlors()}${house.hasTerrace()}${house.howManyWindow()}")
+            Log.w(
+                "housebuilder",
+                "${house.howManyFlors()}${house.hasTerrace()}${house.howManyWindow()}${house.howManyRooms()}"
+            )
 
-            if(editText.text.toString().isEmpty()){
+            if (editText.text.toString().isEmpty()) {
                 editText.error = "email can't be empty"
-            }else if(editText2.text.toString().isEmpty()){
+            } else if (editText2.text.toString().isEmpty()) {
                 editText2.error = "passworld can't be empty"
 
             }
