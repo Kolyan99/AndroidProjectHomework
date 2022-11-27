@@ -29,11 +29,11 @@ class LoginFragment : Fragment() {
 
         val login = view.findViewById<Button>(R.id.btn_main_screen)
         login.setOnClickListener {
-            if(editText.text.toString().isEmpty()){
+            if (editText.text.toString().isEmpty()) {
                 editText.error = getString(R.string.no_login)
-            }else if(editText2.text.toString().isEmpty()){
+            } else if (editText2.text.toString().isEmpty()) {
                 editText2.error = getString(R.string.no_password)
-            }else{
+            } else {
                 parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.activity_container, Main_screenFragment())
@@ -42,11 +42,17 @@ class LoginFragment : Fragment() {
         }
         val registration = view.findViewById<Button>(R.id.btn_registratoin)
         registration.setOnClickListener {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, RegistrationFragment())
-                .commit()
+            if (editText.text.toString().isEmpty()) {
+                editText.error = getString(R.string.no_login)
+            } else if (editText2.text.toString().isEmpty()) {
+                editText2.error = getString(R.string.no_password)
+            } else {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_container, RegistrationFragment())
+                    .commit()
+            }
         }
     }
-
 }
+
