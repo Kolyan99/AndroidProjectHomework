@@ -1,0 +1,44 @@
+package com.example.androidprojecthomework.adapter
+
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.androidprojecthomework.R
+import com.example.androidprojecthomework.listener.ItemsListener
+import com.example.androidprojecthomework.model.ItemsModel
+
+class ItemsViewHolder(
+    private val view: View,
+    private val itemsListener: ItemsListener
+): RecyclerView.ViewHolder(view) {
+
+    fun bind(itemsModel: ItemsModel){
+
+        val name = view.findViewById<TextView>(R.id.tv_name)
+        val date = view.findViewById<TextView>(R.id.tv_date)
+        val text = view.findViewById<TextView>(R.id.tv_text)
+        val imageView = view.findViewById<ImageView>(R.id.iv_image)
+        val image = view.findViewById<ImageView>(R.id.iv_image2)
+
+        name.text = itemsModel.name
+        imageView.setBackgroundResource(itemsModel.image)
+        date.text = itemsModel.date
+        text.text = itemsModel.text
+
+        imageView.setOnClickListener {
+            itemsListener.onClick()
+        }
+        imageView.setOnClickListener {
+            itemsListener.onElement(
+                itemsModel.name,
+                itemsModel.date,
+                itemsModel.image,
+
+            )
+        }
+
+
+
+    }
+}
