@@ -29,7 +29,7 @@ class ItemsViewHolder(
         imageView.setOnClickListener {
             itemsListener.onClick()
         }
-        imageView.setOnClickListener {
+        itemView.setOnClickListener {
             itemsListener.onElement(
                 itemsModel.name,
                 itemsModel.date,

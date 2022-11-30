@@ -98,7 +98,7 @@ class ItemsFragment : Fragment(), ItemsListener {
         bundel.putInt("imageView", imageView)
         detailsFragment.arguments = bundel
        parentFragmentManager.beginTransaction()
-           .add(R.id.activity_container, detailsFragment)
+           .replace(R.id.activity_container, detailsFragment)
            .addToBackStack("Description")
            .commit()
     }
