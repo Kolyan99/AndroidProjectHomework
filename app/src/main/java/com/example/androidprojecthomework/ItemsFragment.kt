@@ -86,7 +86,7 @@ class ItemsFragment : Fragment(), ItemsListener {
     }
 
     override fun onClick() {
-        Toast.makeText(context, "ImageView cliked", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "ImageView clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun onElement(name: String, date: String, imageView: Int) {

@@ -34,7 +34,6 @@ class ItemsViewHolder(
                 itemsModel.name,
                 itemsModel.date,
                 itemsModel.image,
-
             )
         }
 

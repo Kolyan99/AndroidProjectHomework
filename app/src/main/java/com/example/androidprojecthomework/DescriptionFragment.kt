@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextClock
 import android.widget.TextView
 
 class DescriptionFragment : Fragment() {
@@ -25,6 +26,7 @@ class DescriptionFragment : Fragment() {
         val decriptionImage = view.findViewById<ImageView>(R.id.descriptionImage)
         val descriptionName = view.findViewById<TextView>(R.id.descriptionName)
         val descriptionDate = view.findViewById<TextView>(R.id.descriptionDate)
+        val clock = view.findViewById<TextClock>(R.id.textclock)
 
         val bundle = arguments
         bundle?.let { safebundel ->
@@ -36,6 +38,8 @@ class DescriptionFragment : Fragment() {
             descriptionName.text = name
             descriptionDate.text = date
             decriptionImage.setBackgroundResource(image)
+            clock.format24Hour
+
 
 
         }
