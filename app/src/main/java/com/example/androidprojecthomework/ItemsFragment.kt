@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.adapter.ItemsAdapter
@@ -16,6 +17,7 @@ import com.example.androidprojecthomework.model.ItemsModel
 class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
+    private val viewModel: ItemsViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -33,73 +35,32 @@ class ItemsFragment : Fragment(), ItemsListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
 
-        val listItems = listOf<ItemsModel>(
-           ItemsModel(R.drawable.ford,
-               "Ford mustang",
-               "26.10.2023",
-               "Sport car"
-           ),
-            ItemsModel(R.drawable.lamborgini,
-                "Lamborghini Gallardo",
-                "10.9.2020",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.actonmartin,
-                "Acton Martin",
-                "10.04.2022",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.selbycobra,
-                "Selby Cobra",
-                "12.05.2019",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.maseratigranturismo,
-                "Maserati Gran Turismo",
-                "17.04.2020",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.ferrari,
-                "Ferrari",
-                "07.09.2021",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.jaguar,
-                "Jaguar",
-                "14.06.2022",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.ferraricalifornia,
-                "Ferrari California",
-                "30.08.2018",
-                "Sport car"
-            ),
-            ItemsModel(R.drawable.audir8,
-                "Audi r8",
-                "03.02.2018",
-                "Sport car"
-            ),
-        )
-
-        itemsAdapter.submitList(listItems)
-
+        viewModel.getList()
+        viewModel.items.observe(viewLifecycleOwner) { listItems ->
+            itemsAdapter.submitList(listItems)
+        }
+        viewModel.message.observe(viewLifecycleOwner) { message ->
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
+        viewModel.element.observe(viewLifecycleOwner) { element ->
+            val detailsFragment = DescriptionFragment()
+            val bundel = Bundle()
+            bundel.putString(getString(R.string.name), element.name)
+            bundel.putString(getString(R.string.date), element.date)
+            bundel.putInt(getString(R.string.imageView), element.imageView)
+            detailsFragment.arguments = bundel
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.activity_container, detailsFragment)
+                .addToBackStack(getString(R.string.Description))
+                .commit()
+        }
     }
 
     override fun onClick() {
-        Toast.makeText(context, "ImageView clicked", Toast.LENGTH_SHORT).show()
+        viewModel.getMessage()
     }
 
     override fun onElement(name: String, date: String, imageView: Int) {
-
-        val detailsFragment = DescriptionFragment()
-        val bundel = Bundle()
-        bundel.putString("name", name)
-        bundel.putString("date", date)
-        bundel.putInt("imageView", imageView)
-        detailsFragment.arguments = bundel
-       parentFragmentManager.beginTransaction()
-           .replace(R.id.activity_container, detailsFragment)
-           .addToBackStack("Description")
-           .commit()
+        viewModel.elementClicked(name, date, imageView)
     }
 }

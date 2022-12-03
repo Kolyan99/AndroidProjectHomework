@@ -30,5 +30,4 @@ class ItemsAdapter(
     override fun getItemCount(): Int {
         return listItems.size
     }
-
 }

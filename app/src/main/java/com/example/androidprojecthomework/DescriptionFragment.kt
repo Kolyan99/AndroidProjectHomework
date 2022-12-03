@@ -40,12 +40,6 @@ class DescriptionFragment : Fragment() {
             decriptionImage.setBackgroundResource(image)
             clock.format24Hour
 
-
-
         }
-
-
     }
-
-
 }
