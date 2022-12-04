@@ -21,57 +21,57 @@ class ItemsViewModel : ViewModel() {
         val listItems = listOf<ItemsModel>(
             ItemsModel(
                 R.drawable.ford,
-                "Ford mustang",
-                "26.10.2023",
-                "Sport car"
+                R.string.car,
+                R.string.data,
+                R.string.type
             ),
             ItemsModel(
                 R.drawable.lamborgini,
-                "Lamborghini Gallardo",
-                "10.9.2020",
-                "Sport car"
+                R.string.car1,
+                R.string.data1,
+                R.string.type1
             ),
             ItemsModel(
                 R.drawable.actonmartin,
-                "Acton Martin",
-                "10.04.2022",
-                "Sport car"
+                R.string.car2,
+                R.string.data2,
+                R.string.type2
             ),
             ItemsModel(
                 R.drawable.selbycobra,
-                "Selby Cobra",
-                "12.05.2019",
-                "Sport car"
+                R.string.car3,
+                R.string.data3,
+                R.string.type3
             ),
             ItemsModel(
                 R.drawable.maseratigranturismo,
-                "Maserati Gran Turismo",
-                "17.04.2020",
-                "Sport car"
+                R.string.car4,
+                R.string.data4,
+                R.string.type4
             ),
             ItemsModel(
                 R.drawable.ferrari,
-                "Ferrari",
-                "07.09.2021",
-                "Sport car"
+                R.string.car5,
+                R.string.data5,
+                R.string.type5
             ),
             ItemsModel(
                 R.drawable.jaguar,
-                "Jaguar",
-                "14.06.2022",
-                "Sport car"
+                R.string.car6,
+                R.string.data6,
+                R.string.type6
             ),
             ItemsModel(
                 R.drawable.ferraricalifornia,
-                "Ferrari California",
-                "30.08.2018",
-                "Sport car"
+                R.string.car7,
+                R.string.data7,
+                R.string.type7
             ),
             ItemsModel(
                 R.drawable.audir8,
-                "Audi r8",
-                "03.02.2018",
-                "Sport car"
+                R.string.car8,
+                R.string.data8,
+                R.string.type8
             )
         )
         _items.value = listItems
@@ -81,7 +81,7 @@ class ItemsViewModel : ViewModel() {
         _message.value = "ImageView clicked"
     }
 
-    fun elementClicked(name: String, date: String, imageView: Int) {
+    fun elementClicked(name: Int, date: Int, imageView: Int) {
         _element.value = Navigationelement(
             name = name,
             date = date,
@@ -91,8 +91,8 @@ class ItemsViewModel : ViewModel() {
 }
 
 data class Navigationelement(
-    val name: String,
-    val date: String,
+    val name: Int,
+    val date: Int,
     val imageView: Int
 )
 

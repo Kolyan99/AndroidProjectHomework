@@ -11,9 +11,9 @@ import com.example.androidprojecthomework.model.ItemsModel
 class ItemsViewHolder(
     private val view: View,
     private val itemsListener: ItemsListener
-): RecyclerView.ViewHolder(view) {
+) : RecyclerView.ViewHolder(view) {
 
-    fun bind(itemsModel: ItemsModel){
+    fun bind(itemsModel: ItemsModel) {
 
         val name = view.findViewById<TextView>(R.id.tv_name)
         val date = view.findViewById<TextView>(R.id.tv_date)
@@ -21,10 +21,10 @@ class ItemsViewHolder(
         val imageView = view.findViewById<ImageView>(R.id.iv_image)
         val image = view.findViewById<ImageView>(R.id.iv_image2)
 
-        name.text = itemsModel.name
+        name.setText(itemsModel.name)
         imageView.setBackgroundResource(itemsModel.image)
-        date.text = itemsModel.date
-        text.text = itemsModel.text
+        date.setText(itemsModel.date)
+        text.setText(itemsModel.text)
 
         imageView.setOnClickListener {
             itemsListener.onClick()
@@ -33,11 +33,8 @@ class ItemsViewHolder(
             itemsListener.onElement(
                 itemsModel.name,
                 itemsModel.date,
-                itemsModel.image,
+                itemsModel.image
             )
         }
-
-
-
     }
 }

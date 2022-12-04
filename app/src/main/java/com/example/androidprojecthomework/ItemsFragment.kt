@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidprojecthomework.AppConstrants.Companion.Text_Date
+import com.example.androidprojecthomework.AppConstrants.Companion.Text_ImageView
+import com.example.androidprojecthomework.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.adapter.ItemsAdapter
 import com.example.androidprojecthomework.listener.ItemsListener
-import com.example.androidprojecthomework.model.ItemsModel
 
 
 class ItemsFragment : Fragment(), ItemsListener {
@@ -45,9 +47,9 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.element.observe(viewLifecycleOwner) { element ->
             val detailsFragment = DescriptionFragment()
             val bundel = Bundle()
-            bundel.putString(getString(R.string.name), element.name)
-            bundel.putString(getString(R.string.date), element.date)
-            bundel.putInt(getString(R.string.imageView), element.imageView)
+            bundel.putInt(Text_Name, element.name)
+            bundel.putInt(Text_Date, element.date)
+            bundel.putInt(Text_ImageView, element.imageView)
             detailsFragment.arguments = bundel
             parentFragmentManager.beginTransaction()
                 .replace(R.id.activity_container, detailsFragment)
@@ -60,7 +62,7 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.getMessage()
     }
 
-    override fun onElement(name: String, date: String, imageView: Int) {
+    override fun onElement(name: Int, date: Int, imageView: Int) {
         viewModel.elementClicked(name, date, imageView)
     }
 }

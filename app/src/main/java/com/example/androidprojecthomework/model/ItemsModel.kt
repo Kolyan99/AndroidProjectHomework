@@ -2,7 +2,7 @@ package com.example.androidprojecthomework.model
 
 data class ItemsModel(
     val image: Int,
-    val name: String,
-    val date: String,
-    val text: String
+    val name: Int,
+    val date: Int,
+    val text: Int
 )
