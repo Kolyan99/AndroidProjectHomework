@@ -1,11 +1,11 @@
-package com.example.androidprojecthomework.adapter
+package com.example.androidprojecthomework.presentation.adapter
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.R
-import com.example.androidprojecthomework.listener.ItemsListener
+import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.model.ItemsModel
 
 class ItemsViewHolder(

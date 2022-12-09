@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework
+package com.example.androidprojecthomework.utils
 
 class AppConstrants {
 

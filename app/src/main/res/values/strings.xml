@@ -33,4 +33,11 @@
     <string name="type7">Sport car</string>
     <string name="data8">03.02.2018</string>
     <string name="type8">Sport car</string>
+    <string name="text_view">Welcome to register</string>
+    <string name="enter_login">Enter login</string>
+    <string name="enter_password">Enter password</string>
+    <string name="registration">Registration</string>
+    <string name="error_login">No login</string>
+    <string name="error_password">No password</string>
+    <string name="image_click">ImageView clicked</string>
 </resources>

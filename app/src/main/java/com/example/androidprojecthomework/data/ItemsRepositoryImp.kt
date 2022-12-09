@@ -1,23 +1,12 @@
-package com.example.androidprojecthomework
+package com.example.androidprojecthomework.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.androidprojecthomework.R
+import com.example.androidprojecthomework.domain.ItemsRepository
 import com.example.androidprojecthomework.model.ItemsModel
 
-class ItemsViewModel : ViewModel() {
+class ItemsRepositoryImp: ItemsRepository {
 
-    private val _items = MutableLiveData<List<ItemsModel>>()
-    val items: LiveData<List<ItemsModel>> = _items
-
-    private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
-
-    private val _element = MutableLiveData<Navigationelement>()
-    val element: LiveData<Navigationelement> = _element
-
-    fun getList() {
-
+    override fun getData(): List<ItemsModel> {
         val listItems = listOf<ItemsModel>(
             ItemsModel(
                 R.drawable.ford,
@@ -74,25 +63,6 @@ class ItemsViewModel : ViewModel() {
                 R.string.type8
             )
         )
-        _items.value = listItems
-    }
-
-    fun getMessage() {
-        _message.value = "ImageView clicked"
-    }
-
-    fun elementClicked(name: Int, date: Int, imageView: Int) {
-        _element.value = Navigationelement(
-            name = name,
-            date = date,
-            imageView = imageView
-        )
+        return listItems
     }
 }
-
-data class Navigationelement(
-    val name: Int,
-    val date: Int,
-    val imageView: Int
-)
-
