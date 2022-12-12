@@ -30,9 +30,9 @@ class LoginFragment : Fragment() {
 
 
         viewBinding.button.setOnClickListener {
-            if (viewBinding.editText.text.toString().isEmpty() || viewBinding.editText.length()>10){
+            if (viewBinding.editText.text.toString().isEmpty() || viewBinding.editText.length()>10 || viewBinding.editText.length()<5){
                 viewBinding.editText.error = getString(R.string.error_login)
-            }else if (viewBinding.editText2.text.toString().isEmpty() || viewBinding.editText2.length()>10){
+            }else if (viewBinding.editText2.text.toString().isEmpty() || viewBinding.editText2.length()>10 || viewBinding.editText2.length()<5){
                 viewBinding.editText2.error = getString(R.string.error_password)
             } else {
                 parentFragmentManager
