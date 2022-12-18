@@ -14,7 +14,9 @@ import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Nam
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentDescriptionBinding
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DescriptionFragment : Fragment() {
 
     private var _viewBinding: FragmentDescriptionBinding? = null

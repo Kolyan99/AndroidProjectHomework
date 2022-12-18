@@ -9,8 +9,9 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _viewBinding: FragmentLoginBinding? = null
