@@ -20,17 +20,16 @@ import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.model.ItemsModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener, ItemsView {
+    @Inject lateinit var itemsPresenter: ItemsPresenter
 
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
     private lateinit var itemsAdapter: ItemsAdapter
-
-    lateinit var itemsPresenter: ItemsPresenter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
