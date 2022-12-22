@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
-import com.example.androidprojecthomework.model.ItemsModel
+import com.example.androidprojecthomework.presentation.model.ItemsModel
 
 class ItemsAdapter(
     private val itemsListener: ItemsListener

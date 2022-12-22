@@ -18,19 +18,21 @@ import com.example.androidprojecthomework.databinding.FragmentLoginBinding
 import com.example.androidprojecthomework.domain.ItemsInteractor
 import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
-import com.example.androidprojecthomework.model.ItemsModel
+import com.example.androidprojecthomework.presentation.model.ItemsModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
+    @Inject
+    lateinit var itemsPresenter: ItemsPresenter
+
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    lateinit var itemsPresenter: ItemsPresenter
 
 
     override fun onCreateView(
@@ -44,7 +46,6 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemsPresenter = ItemsPresenter(this, ItemsInteractor(ItemsRepositoryImp()))
 
         itemsAdapter = ItemsAdapter(this)
         viewBinding.recyclerView.adapter = itemsAdapter

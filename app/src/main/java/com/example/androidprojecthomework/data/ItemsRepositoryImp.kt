@@ -2,7 +2,7 @@ package com.example.androidprojecthomework.data
 
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.domain.ItemsRepository
-import com.example.androidprojecthomework.model.ItemsModel
+import com.example.androidprojecthomework.presentation.model.ItemsModel
 import javax.inject.Inject
 
 class ItemsRepositoryImp @Inject constructor(): ItemsRepository {

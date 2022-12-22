@@ -1,6 +1,6 @@
 package com.example.androidprojecthomework.domain
 
-import com.example.androidprojecthomework.model.ItemsModel
+import com.example.androidprojecthomework.presentation.model.ItemsModel
 
 interface ItemsRepository {
 

@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.model
+package com.example.androidprojecthomework.presentation.model
 
 data class ItemsModel(
     val image: Int,
