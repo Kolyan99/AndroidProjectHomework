@@ -34,7 +34,6 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
     private lateinit var itemsAdapter: ItemsAdapter
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,39 +45,44 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        itemsPresenter.setView(this)
+
 
         itemsAdapter = ItemsAdapter(this)
         viewBinding.recyclerView.adapter = itemsAdapter
+        viewBinding.recyclerView.layoutManager =LinearLayoutManager(context)
 
-        itemsPresenter.getData()
+        itemsPresenter.getItems()
 
-        }
+    }
 
     override fun onClick() {
-        itemsPresenter.imageViewClick()
+        itemsPresenter.imageViewClicked()
     }
 
     override fun onElement(name: Int, date: Int, imageView: Int) {
-        itemsPresenter.elementSelected(name, date, imageView)
+        itemsPresenter.itemClicked(name, date, imageView)
 
     }
 
-    override fun dataReceived(list: List<ItemsModel>) {
+    override fun itemsReceived(list: List<ItemsModel>) {
         itemsAdapter.submitList(list)
     }
 
-    override fun imageClick(msg:Int) {
+    override fun imageViewClick(msg: Int) {
         Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
     }
 
-    override fun goToDescription(name: Int, date: Int, imageView: Int) {
+    override fun itemsClicked(navigationData: NavigateWithBundel) {
         val detailsFragment = DescriptionFragment()
         val bundel = Bundle()
-        bundel.putString(Text_Name, name.toString())
-        bundel.putString(Text_Date, date.toString())
-        bundel.putInt(Text_ImageView, imageView)
+        bundel.putString(Text_Name, navigationData.toString())
+        bundel.putString(Text_Date, navigationData.toString())
+        bundel.putInt(Text_ImageView, navigationData.imageView)
         detailsFragment.arguments = bundel
-        parentFragmentManager.beginTransaction()
+
+        parentFragmentManager
+            .beginTransaction()
             .replace(R.id.activity_container, detailsFragment)
             .addToBackStack(getString(R.string.Description))
             .commit()

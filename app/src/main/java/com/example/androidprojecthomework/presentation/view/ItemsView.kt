@@ -4,9 +4,9 @@ import com.example.androidprojecthomework.presentation.model.ItemsModel
 
 interface ItemsView {
 
-    fun dataReceived(list: List<ItemsModel>)
+    fun itemsReceived(list: List<ItemsModel>)
 
-    fun imageClick(msg: Int)
+    fun imageViewClick(msg: Int)
 
-    fun goToDescription(name: Int, date: Int, imageView: Int)
+    fun itemsClicked(navigationData: NavigateWithBundel)
 }

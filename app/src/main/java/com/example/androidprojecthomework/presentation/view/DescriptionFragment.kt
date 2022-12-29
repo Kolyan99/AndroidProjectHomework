@@ -15,12 +15,16 @@ import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentDescriptionBinding
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class DescriptionFragment : Fragment() {
+class DescriptionFragment : Fragment(), DescriptionView {
 
     private var _viewBinding: FragmentDescriptionBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    @Inject
+    lateinit var descriptionPresenter: DescriptionPresenter
 
 
     override fun onCreateView(
@@ -34,19 +38,34 @@ class DescriptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        descriptionPresenter.setView(this)
+
 
         val bundle = arguments
         bundle?.let { safebundel ->
-
-            val name = safebundel.getString(Text_Name)
-            val date = safebundel.getString(Text_Date)
-            val image = safebundel.getInt(Text_ImageView)
-
-            viewBinding.descriptionName.text = name
-            viewBinding.descriptionDate.text = date
-            viewBinding.descriptionImage.setBackgroundResource(image)
+            descriptionPresenter.getArguments(
+                safebundel.getString(Text_Name),
+                safebundel.getString(Text_Date),
+                safebundel.getInt(Text_ImageView)
+            )
             viewBinding.textclock.format24Hour
 
         }
+
+        viewBinding.btnLogout.setOnClickListener {
+            descriptionPresenter.logoutUser()
+        }
+    }
+
+    override fun userLoggedOut() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.activity_container, LoginFragment())
+            .commit()
+    }
+
+    override fun displayItemData(name: String, date: String, imageView: Int) {
+        viewBinding.descriptionName.text = name
+        viewBinding.descriptionDate.text = date
+        viewBinding.descriptionImage.setBackgroundResource(imageView)
     }
 }

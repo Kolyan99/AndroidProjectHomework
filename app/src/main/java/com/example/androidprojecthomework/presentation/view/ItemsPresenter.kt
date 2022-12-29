@@ -2,38 +2,35 @@ package com.example.androidprojecthomework.presentation.view
 
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.domain.ItemsInteractor
-import com.example.androidprojecthomework.presentation.model.ItemsModel
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
-import javax.inject.Singleton
 
+class ItemsPresenter  @Inject constructor(
+    private val itemsInteractor: ItemsInteractor
+) {
 
+    private lateinit var itemsView: ItemsView
 
-class ItemsPresenter @Inject constructor( private val itemsInteractor: ItemsInteractor) {
-
-    private lateinit var  itemsView: ItemsView
-
-
-
-    fun getData(){
-
-        val listItems = itemsInteractor.getData()
-        itemsView.dataReceived(listItems)
+    fun setView(itemsFragment: ItemsFragment){
+        itemsView = itemsFragment
     }
 
+    fun getItems(){
+        val items = itemsInteractor.getData()
+        itemsView.itemsReceived(items)
+    }
 
-    fun imageViewClick(){
-        itemsView.imageClick(R.string.image_click)
+    fun imageViewClicked(){
+        itemsView.imageViewClick(R.string.image_click)
 
     }
 
-
-    fun elementSelected(name: Int, date: Int, imageView: Int){
-        itemsView.goToDescription(name, date, imageView)
-
+    fun itemClicked(name: Int, date: Int, imageView: Int){
+        itemsView.itemsClicked(NavigateWithBundel(name,date,imageView))
     }
 }
+
+data class NavigateWithBundel(
+    val name: Int,
+    val date: Int,
+    val imageView: Int
+)
