@@ -6,16 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.R
-import com.example.androidprojecthomework.data.ItemsRepositoryImp
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
-import com.example.androidprojecthomework.databinding.FragmentLoginBinding
-import com.example.androidprojecthomework.domain.ItemsInteractor
 import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.ItemsModel

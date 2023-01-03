@@ -1,16 +1,8 @@
 package com.example.androidprojecthomework.presentation.view
 
 import com.example.androidprojecthomework.R
-import com.example.androidprojecthomework.domain.ItemsInteractor
-import com.example.androidprojecthomework.presentation.model.ItemsModel
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.components.SingletonComponent
+import com.example.androidprojecthomework.domain.items.ItemsInteractor
 import javax.inject.Inject
-import javax.inject.Singleton
-
 
 
 class ItemsPresenter @Inject constructor( private val itemsInteractor: ItemsInteractor) {

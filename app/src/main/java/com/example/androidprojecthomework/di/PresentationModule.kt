@@ -1,6 +1,6 @@
 package com.example.androidprojecthomework.di
 
-import com.example.androidprojecthomework.domain.ItemsInteractor
+import com.example.androidprojecthomework.domain.items.ItemsInteractor
 import com.example.androidprojecthomework.presentation.view.ItemsPresenter
 import dagger.Module
 import dagger.Provides

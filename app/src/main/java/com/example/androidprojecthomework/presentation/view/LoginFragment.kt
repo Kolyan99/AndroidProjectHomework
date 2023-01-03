@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +17,8 @@ class LoginFragment : Fragment() {
 
     private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,17 +34,26 @@ class LoginFragment : Fragment() {
 
 
         viewBinding.button.setOnClickListener {
+            viewModel.loginUser(
+                viewBinding.editText.text.toString(),
+                viewBinding.editText2.text.toString()
+            )
             if (viewBinding.editText.text.toString().isEmpty() || viewBinding.editText.length()>10 || viewBinding.editText.length()<5){
                 viewBinding.editText.error = getString(R.string.error_login)
             }else if (viewBinding.editText2.text.toString().isEmpty() || viewBinding.editText2.length()>10 || viewBinding.editText2.length()<5){
                 viewBinding.editText2.error = getString(R.string.error_password)
             } else {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, ItemsFragment())
-                    .commit()
-
+//                parentFragmentManager
+//                    .beginTransaction()
+//                    .replace(R.id.activity_container, ItemsFragment())
+//                    .commit()
             }
+        }
+
+        viewModel.nav.observe(viewLifecycleOwner){
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.activity_container, HomeFragment())
         }
     }
 

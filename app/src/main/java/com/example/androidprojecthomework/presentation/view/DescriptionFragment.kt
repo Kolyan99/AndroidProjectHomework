@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextClock
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
@@ -21,6 +22,8 @@ class DescriptionFragment : Fragment() {
 
     private var _viewBinding: FragmentDescriptionBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: DescriptionViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -46,7 +49,14 @@ class DescriptionFragment : Fragment() {
             viewBinding.descriptionDate.text = date
             viewBinding.descriptionImage.setBackgroundResource(image)
             viewBinding.textclock.format24Hour
-
+        }
+        viewBinding.btnLogout.setOnClickListener {
+            viewModel.logoutUser()
+        }
+        viewModel.nav.observe(viewLifecycleOwner){
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.activity_container, LoginFragment())
+                .commit()
         }
     }
 }
