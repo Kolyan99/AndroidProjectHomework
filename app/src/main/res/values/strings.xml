@@ -40,4 +40,5 @@
     <string name="error_login">No login</string>
     <string name="error_password">No password</string>
     <string name="image_click">ImageView clicked</string>
+    <string name="click" />
 </resources>

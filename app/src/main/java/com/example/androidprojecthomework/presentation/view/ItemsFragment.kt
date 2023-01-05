@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
@@ -18,21 +21,19 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ItemsFragment : Fragment(), ItemsListener, ItemsView {
+class ItemsFragment : Fragment(), ItemsListener {
 
-    @Inject
-    lateinit var itemsPresenter: ItemsPresenter
+    private lateinit var itemsAdapter: ItemsAdapter
+
+    private val viewModel: ItemsViewModel by viewModels()
 
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    private lateinit var itemsAdapter: ItemsAdapter
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _viewBinding = FragmentItemsBinding.inflate(inflater)
         return viewBinding.root
@@ -41,41 +42,49 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         itemsAdapter = ItemsAdapter(this)
-        viewBinding.recyclerView.adapter = itemsAdapter
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = itemsAdapter
 
-        itemsPresenter.getData()
+        viewModel.getData()
 
+        viewModel.items.observe(viewLifecycleOwner) { listItems ->
+            itemsAdapter.submitList(listItems)
         }
 
+        viewModel.msg.observe(viewLifecycleOwner) { msg ->
+            Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
+            if (navBundle != null) {
+                val descriptionFragment = DescriptionFragment()
+                val bundle = Bundle()
+                bundle.putString(Text_Name, navBundle.name.toString())
+                bundle.putString(Text_Date, navBundle.date.toString())
+                bundle.putInt(Text_ImageView, navBundle.image)
+                descriptionFragment.arguments = bundle
+
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_container, descriptionFragment)
+                    .addToBackStack(R.id.Descriphion.toString())
+                    .commit()
+                viewModel.userNavigated()
+            }
+        }
+    }
+
     override fun onClick() {
-        itemsPresenter.imageViewClick()
+        viewModel.imageViewClicked()
     }
 
-    override fun onElement(name: Int, date: Int, imageView: Int) {
-        itemsPresenter.elementSelected(name, date, imageView)
-
-    }
-
-    override fun dataReceived(list: List<ItemsModel>) {
-        itemsAdapter.submitList(list)
-    }
-
-    override fun imageClick(msg:Int) {
-        Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
-    }
-
-    override fun goToDescription(name: Int, date: Int, imageView: Int) {
-        val detailsFragment = DescriptionFragment()
-        val bundel = Bundle()
-        bundel.putString(Text_Name, name.toString())
-        bundel.putString(Text_Date, date.toString())
-        bundel.putInt(Text_ImageView, imageView)
-        detailsFragment.arguments = bundel
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack(getString(R.string.Description))
-            .commit()
+     fun onElementSelected(
+        name: Int,
+        date: Int,
+        image: Int,
+        ) {
+        viewModel.elementClicked(name, date, image)
     }
 }

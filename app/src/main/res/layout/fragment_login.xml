@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B60FDC"
+    android:background="@drawable/jaguar"
     tools:context=".presentation.view.LoginFragment">
 
 
@@ -42,7 +42,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text"
             android:layout_width="match_parent"
-            android:background="#863FB8"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:maxLength="10"
@@ -68,7 +67,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text2"
             android:layout_width="match_parent"
-            android:background="#863FB8"
             android:textStyle="bold"
             android:maxLength="10"
             android:layout_height="wrap_content"
