@@ -22,7 +22,6 @@ class MainViewModel @Inject constructor(
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> = _msg
 
-
     fun checkUserExists(){
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exception", exception)

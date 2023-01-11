@@ -32,22 +32,16 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         viewBinding.button.setOnClickListener {
-            viewModel.loginUser(
-                viewBinding.editText.text.toString(),
-                viewBinding.editText2.text.toString()
-            )
             if (viewBinding.editText.text.toString().isEmpty() || viewBinding.editText.length()>10 || viewBinding.editText.length()<5){
                 viewBinding.editText.error = getString(R.string.error_login)
             }else if (viewBinding.editText2.text.toString().isEmpty() || viewBinding.editText2.length()>10 || viewBinding.editText2.length()<5){
                 viewBinding.editText2.error = getString(R.string.error_password)
             } else {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, ItemsFragment())
-                    .commit()
+                viewModel.loginUser(
+                    viewBinding.editText.text.toString(),
+                    viewBinding.editText2.text.toString()
+                )
             }
         }
 
