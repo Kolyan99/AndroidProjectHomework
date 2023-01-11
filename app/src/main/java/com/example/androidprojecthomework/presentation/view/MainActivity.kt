@@ -24,15 +24,15 @@ class MainActivity : AppCompatActivity(), MainView {
         mainPresenter.setView(this)
 
         mainPresenter.checkUserExists()
-
     }
 
     override fun userExistsResult(userExists: Boolean) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.activity_container,
-            when(userExists){
+        fragmentTransaction.add(
+            R.id.activity_container,
+            when (userExists) {
                 true -> HomeFragment()
-                false ->LoginFragment()
+                false -> LoginFragment()
             }
         )
         fragmentTransaction.commit()

@@ -1,12 +1,11 @@
-package com.example.androidprojecthomework.domain
+package com.example.androidprojecthomework.domain.items
 
 import com.example.androidprojecthomework.presentation.model.ItemsModel
-import dagger.Provides
 import javax.inject.Inject
 
 class ItemsInteractor @Inject constructor(private val itemsRepository: ItemsRepository) {
 
-    fun getData():List<ItemsModel>{
+    suspend fun getData():List<ItemsModel>{
        return  itemsRepository.getData()
     }
 }

@@ -1,7 +1,12 @@
 package com.example.androidprojecthomework.presentation.view
 
+import android.util.Log
 import com.example.androidprojecthomework.R
-import com.example.androidprojecthomework.domain.ItemsInteractor
+import com.example.androidprojecthomework.domain.items.ItemsInteractor
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ItemsPresenter  @Inject constructor(
@@ -15,8 +20,22 @@ class ItemsPresenter  @Inject constructor(
     }
 
     fun getItems(){
-        val items = itemsInteractor.getData()
-        itemsView.itemsReceived(items)
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exception", exception)
+        }
+        CoroutineScope(Dispatchers.IO).launch(coroutineExceptionHandler){
+            val job = launch {
+                try {
+                    val items = itemsInteractor.getData()
+                    itemsView.itemsReceived(items)
+                }catch (e: Exception){
+                    Log.w("exception", "No cars")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
+
     }
 
     fun imageViewClicked(){

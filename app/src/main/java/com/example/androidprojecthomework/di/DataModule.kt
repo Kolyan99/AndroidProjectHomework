@@ -5,8 +5,8 @@ import android.content.Context.MODE_PRIVATE
 import com.example.androidprojecthomework.data.AuthRepositoryImpl
 import com.example.androidprojecthomework.data.ItemsRepositoryImp
 import com.example.androidprojecthomework.data.sharedprefs.SharedPrefersHelp
-import com.example.androidprojecthomework.domain.AuthRepository
-import com.example.androidprojecthomework.domain.ItemsRepository
+import com.example.androidprojecthomework.domain.auth.AuthRepository
+import com.example.androidprojecthomework.domain.items.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

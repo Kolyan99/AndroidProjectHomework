@@ -1,7 +1,7 @@
 package com.example.androidprojecthomework.di
 
-import com.example.androidprojecthomework.domain.AuthInteractor
-import com.example.androidprojecthomework.domain.ItemsInteractor
+import com.example.androidprojecthomework.domain.auth.AuthInteractor
+import com.example.androidprojecthomework.domain.items.ItemsInteractor
 import com.example.androidprojecthomework.presentation.view.DescriptionPresenter
 import com.example.androidprojecthomework.presentation.view.ItemsPresenter
 import com.example.androidprojecthomework.presentation.view.LoginPresenter

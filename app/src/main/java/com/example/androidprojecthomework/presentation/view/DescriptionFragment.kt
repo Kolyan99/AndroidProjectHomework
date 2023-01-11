@@ -40,7 +40,6 @@ class DescriptionFragment : Fragment(), DescriptionView {
 
         descriptionPresenter.setView(this)
 
-
         val bundle = arguments
         bundle?.let { safebundel ->
             descriptionPresenter.getArguments(

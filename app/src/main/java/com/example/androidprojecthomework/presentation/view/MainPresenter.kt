@@ -1,6 +1,11 @@
 package com.example.androidprojecthomework.presentation.view
 
-import com.example.androidprojecthomework.domain.AuthInteractor
+import android.util.Log
+import com.example.androidprojecthomework.domain.auth.AuthInteractor
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -13,8 +18,22 @@ class MainPresenter @Inject constructor(
         mainView = mainActivity
     }
 
-    fun checkUserExists (){
-        val doesUserExist = authInteractor.checkUserExsist()
-        mainView.userExistsResult(doesUserExist)
+
+     fun checkUserExists (){
+         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+             Log.w("exception", exception)
+         }
+         CoroutineScope(Dispatchers.IO).launch(coroutineExceptionHandler) {
+             val job = launch {
+                 try {
+                     val doesUserExist = authInteractor.checkUserExsist()
+                     mainView.userExistsResult(doesUserExist)
+                 }catch (e: Exception){
+                     Log.w("exception", "checkUser" )
+                 }
+             }
+             job.join()
+             job.cancel()
+         }
     }
 }
