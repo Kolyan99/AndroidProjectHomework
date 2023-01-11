@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
@@ -43,10 +44,10 @@ class LoginFragment : Fragment() {
             }else if (viewBinding.editText2.text.toString().isEmpty() || viewBinding.editText2.length()>10 || viewBinding.editText2.length()<5){
                 viewBinding.editText2.error = getString(R.string.error_password)
             } else {
-//                parentFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.activity_container, ItemsFragment())
-//                    .commit()
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.activity_container, ItemsFragment())
+                    .commit()
             }
         }
 
@@ -55,6 +56,8 @@ class LoginFragment : Fragment() {
                 .beginTransaction()
                 .replace(R.id.activity_container, HomeFragment())
         }
+        viewModel.msg.observe(viewLifecycleOwner){
+            Toast.makeText(context, getString(R.string.msg), Toast.LENGTH_SHORT).show()
+        }
     }
-
 }

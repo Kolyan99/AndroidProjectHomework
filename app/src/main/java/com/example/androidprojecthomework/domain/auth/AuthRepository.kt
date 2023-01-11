@@ -4,11 +4,11 @@ import com.example.androidprojecthomework.presentation.model.UserModel
 
 interface AuthRepository {
 
-    fun loginUser(userName: String, userPassword: String)
+    suspend fun loginUser(userName: String, userPassword: String)
 
-    fun showUserCreds(): UserModel
+    suspend fun showUserCreds(): UserModel
 
-    fun doesUserExists(): Boolean
+    suspend fun doesUserExists(): Boolean
 
-    fun userLogout()
+    suspend fun userLogout()
 }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentHomeBinding
@@ -43,7 +44,8 @@ class HomeFragment : Fragment() {
             binding.tvUserCreds.text = "${it.userName} \n ${it.userPassword}"
         }
 
-
+        viewModel.msg.observe(viewLifecycleOwner){
+            Toast.makeText(context, getString(R.string.msg_home), Toast.LENGTH_SHORT).show()
+        }
     }
-
 }

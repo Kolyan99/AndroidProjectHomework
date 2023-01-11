@@ -43,14 +43,21 @@ class ItemsFragment : Fragment(), ItemsListener {
         super.onViewCreated(view, savedInstanceState)
 
         itemsAdapter = ItemsAdapter(this)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = itemsAdapter
+        viewBinding.recyclerView.adapter
+        viewBinding.recyclerView.layoutManager
+
+        //  val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        //  recyclerView.layoutManager = LinearLayoutManager(context)
+        //  recyclerView.adapter = itemsAdapter
 
         viewModel.getData()
 
         viewModel.items.observe(viewLifecycleOwner) { listItems ->
             itemsAdapter.submitList(listItems)
+        }
+
+        viewModel.message.observe(viewLifecycleOwner) {
+            Toast.makeText(context, getString(R.string.message), Toast.LENGTH_SHORT).show()
         }
 
         viewModel.msg.observe(viewLifecycleOwner) { msg ->
@@ -80,11 +87,13 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewModel.imageViewClicked()
     }
 
-     fun onElementSelected(
+
+    fun onElementSelected(
         name: Int,
         date: Int,
         image: Int,
-        ) {
+    ) {
         viewModel.elementClicked(name, date, image)
     }
+
 }

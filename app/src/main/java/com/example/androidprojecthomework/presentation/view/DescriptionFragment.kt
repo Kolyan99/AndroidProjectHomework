@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextClock
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
@@ -57,6 +58,10 @@ class DescriptionFragment : Fragment() {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.activity_container, LoginFragment())
                 .commit()
+        }
+
+        viewModel.msg.observe(viewLifecycleOwner){
+            Toast.makeText(context, getString(R.string.msg_descript), Toast.LENGTH_SHORT).show()
         }
     }
 }

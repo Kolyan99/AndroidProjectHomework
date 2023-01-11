@@ -41,4 +41,8 @@
     <string name="error_password">No password</string>
     <string name="image_click">ImageView clicked</string>
     <string name="click" />
+    <string name="message">Incorrectly selected</string>
+    <string name="msg">No information</string>
+    <string name="msg_home">No information</string>
+    <string name="msg_descript">No logout</string>
 </resources>

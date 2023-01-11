@@ -3,10 +3,12 @@ package com.example.androidprojecthomework.presentation.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -14,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
 
     private val viewModel: MainViewModel by viewModels()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

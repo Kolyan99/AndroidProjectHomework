@@ -7,19 +7,19 @@ class AuthInteractor @Inject constructor(
     private val authRepository: AuthRepository
     ) {
 
-    fun loginUser(userName: String, userPassword: String){
+   suspend fun loginUser(userName: String, userPassword: String){
         authRepository.loginUser(userName, userPassword)
     }
 
-    fun getUserCreds(): UserModel{
+    suspend fun getUserCreds(): UserModel{
         return authRepository.showUserCreds()
     }
 
-    fun checkUserExists(): Boolean{
+    suspend fun checkUserExists(): Boolean{
         return authRepository.doesUserExists()
     }
 
-    fun logoutUser(){
+    suspend fun logoutUser(){
         authRepository.userLogout()
     }
 }
