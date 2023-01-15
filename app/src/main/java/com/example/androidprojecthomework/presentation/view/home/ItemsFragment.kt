@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
 import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
@@ -22,10 +24,11 @@ class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels()
 
     private var _viewBinding: FragmentItemsBinding? = null
     private val viewBinding get() = _viewBinding!!
+
+    private val viewModel: ItemsViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -43,8 +46,8 @@ class ItemsFragment : Fragment(), ItemsListener {
         viewBinding.recyclerView.adapter
         viewBinding.recyclerView.layoutManager
 
-        //  val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        //  recyclerView.layoutManager = LinearLayoutManager(context)
+        // val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        // recyclerView.layoutManager = LinearLayoutManager(context)
         //  recyclerView.adapter = itemsAdapter
 
         viewModel.getData()
@@ -63,12 +66,10 @@ class ItemsFragment : Fragment(), ItemsListener {
 
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
-                val descriptionFragment = DescriptionFragment()
                 val bundle = Bundle()
                 bundle.putString(Text_Name, navBundle.name.toString())
                 bundle.putString(Text_Date, navBundle.date.toString())
                 bundle.putInt(Text_ImageView, navBundle.image)
-                descriptionFragment.arguments = bundle
 
                 navigateWithBundel(
                     navBundle.destination,

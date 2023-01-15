@@ -67,7 +67,7 @@ class ItemsRepositoryImp @Inject constructor(): ItemsRepository {
                     R.string.type8
                 )
             )
-            listItems
+             listItems
         }
     }
 }

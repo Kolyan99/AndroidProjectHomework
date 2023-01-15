@@ -50,14 +50,16 @@ class DescriptionFragment : Fragment() {
             viewBinding.descriptionImage.setBackgroundResource(image)
             viewBinding.textclock.format24Hour
         }
-        viewBinding.btnLogout.setOnClickListener {
-            viewModel.logoutUser()
-        }
         viewModel.nav.observe(viewLifecycleOwner){
             if(it != null){
                 replaceGraph(it)
             }
         }
+
+        viewBinding.btnLogout.setOnClickListener {
+            viewModel.logoutUser()
+        }
+
 
         viewModel.msg.observe(viewLifecycleOwner){
             Toast.makeText(context, getString(R.string.msg_descript), Toast.LENGTH_SHORT).show()

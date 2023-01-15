@@ -34,7 +34,6 @@ class MainViewModel @Inject constructor(
                     true -> R.navigation.main_graph
                     false -> R.navigation.auth_graph
                 }
-                //_userExists.value = authInteractor.checkUserExists()
             } catch (e: Exception) {
                 _msg.value = e.message.toString()
             }
