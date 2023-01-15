@@ -1,13 +1,10 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextClock
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
@@ -15,7 +12,8 @@ import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Ima
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentDescriptionBinding
-import com.example.androidprojecthomework.databinding.FragmentLoginBinding
+import com.example.androidprojecthomework.presentation.view.auth.LoginFragment
+import com.example.androidprojecthomework.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +21,7 @@ class DescriptionFragment : Fragment() {
 
     private var _viewBinding: FragmentDescriptionBinding? = null
     private val viewBinding get() = _viewBinding!!
+
 
     private val viewModel: DescriptionViewModel by viewModels()
 
@@ -55,9 +54,9 @@ class DescriptionFragment : Fragment() {
             viewModel.logoutUser()
         }
         viewModel.nav.observe(viewLifecycleOwner){
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_container, LoginFragment())
-                .commit()
+            if(it != null){
+                replaceGraph(it)
+            }
         }
 
         viewModel.msg.observe(viewLifecycleOwner){

@@ -1,10 +1,11 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.auth
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.domain.auth.AuthInteractor
 import com.example.androidprojecthomework.presentation.model.UserModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
-): ViewModel() {
+) : ViewModel() {
 
     private val _userCreds = MutableLiveData<UserModel>()
     val userCreds: LiveData<UserModel> = _userCreds
@@ -23,16 +24,23 @@ class HomeViewModel @Inject constructor(
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> = _msg
 
-    fun showUserData(){
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
+
+    fun showUserData() {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exception", exception)
         }
         viewModelScope.launch(coroutineExceptionHandler) {
             try {
                 _userCreds.value = authInteractor.getUserCreds()
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 _msg.value = e.message.toString()
             }
         }
+    }
+
+    fun goToItems() {
+        _nav.value = R.navigation.main_graph
     }
 }

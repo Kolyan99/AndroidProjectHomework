@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentHomeBinding
-import com.example.androidprojecthomework.databinding.FragmentLoginBinding
+import com.example.androidprojecthomework.presentation.view.home.ItemsFragment
+import com.example.androidprojecthomework.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,11 +34,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.showUserData()
+        viewModel.nav.observe(viewLifecycleOwner){
+            if (it != null){
+                replaceGraph(it)
+            }
+        }
 
         binding.goItems.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.activity_container, ItemsFragment())
-                .commit()
+            viewModel.goToItems()
         }
 
         viewModel.userCreds.observe(viewLifecycleOwner){

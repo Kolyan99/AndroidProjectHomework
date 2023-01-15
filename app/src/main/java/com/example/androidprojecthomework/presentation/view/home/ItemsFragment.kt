@@ -1,24 +1,21 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
-import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
-import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
 import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
-import com.example.androidprojecthomework.presentation.model.ItemsModel
+import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
+import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
+import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
+import com.example.androidprojecthomework.utils.NavHelper.navigateWithBundel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
@@ -73,10 +70,10 @@ class ItemsFragment : Fragment(), ItemsListener {
                 bundle.putInt(Text_ImageView, navBundle.image)
                 descriptionFragment.arguments = bundle
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, descriptionFragment)
-                    .commit()
+                navigateWithBundel(
+                    navBundle.destination,
+                    bundle
+                )
                 viewModel.userNavigated()
             }
         }

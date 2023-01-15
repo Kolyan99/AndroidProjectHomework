@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -52,7 +52,7 @@ class ItemsViewModel @Inject constructor(
             name = name,
             date = date,
             image = image,
-
+            destination = R.id.action_itemsFragment_to_descriptionFragment
         )
     }
 
@@ -65,5 +65,5 @@ data class NavigateWithBundle(
     val name: Int,
     val date: Int,
     val image: Int,
-
+    val destination: Int
 )

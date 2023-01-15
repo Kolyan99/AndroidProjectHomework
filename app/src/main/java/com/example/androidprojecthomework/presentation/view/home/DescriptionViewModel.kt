@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,26 +13,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class DescriptionViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
-) : ViewModel() {
+): ViewModel() {
 
-    private val _nav = MutableLiveData<Unit?>()
-    val nav: LiveData<Unit?> = _nav
+    private val _nav = MutableLiveData<Int?>()
+    val nav: LiveData<Int?> = _nav
 
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> = _msg
 
-
-    fun loginUser(userName: String, userPassword: String) {
+    fun logoutUser(){
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exception", exception)
         }
         viewModelScope.launch(coroutineExceptionHandler) {
             try {
-                authInteractor.loginUser(userName, userPassword)
-                _nav.value = Unit
-            } catch (e: Exception) {
+                authInteractor.logoutUser()
+                _nav.value = R.navigation.auth_graph
+            }catch (e: Exception){
                 _msg.value = e.message.toString()
             }
         }
