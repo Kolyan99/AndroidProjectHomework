@@ -1,12 +1,10 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.auth
 
 import android.util.Log
-import android.widget.Toast
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.domain.auth.AuthInteractor
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import javax.inject.Scope
 
 class LoginPresenter @Inject constructor(
     private val authInteractor: AuthInteractor
@@ -27,7 +25,7 @@ class LoginPresenter @Inject constructor(
             val job = launch {
                 try {
                     authInteractor.loginUser(userName, userPassword)
-                    loginView.userLogged()
+                    loginView.userLogged(R.id.action_loginFragment_to_homeFragment, R.id.loginFragment)
                 }catch (e: Exception){
                     Log.w("exception", "loginUser FAILED")
                 }

@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +15,8 @@ import com.example.androidprojecthomework.databinding.FragmentItemsBinding
 import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.ItemsModel
+import com.example.androidprojecthomework.utils.NavHelp.navigate
+import com.example.androidprojecthomework.utils.NavHelp.navigateWithBundel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -69,18 +71,14 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
     }
 
-    override fun itemsClicked(navigationData: NavigateWithBundel) {
-        val detailsFragment = DescriptionFragment()
+    override fun itemsClicked(navigationData: NavigateWithBundel, destination: Int) {
+       // val detailsFragment = DescriptionFragment()
         val bundel = Bundle()
         bundel.putString(Text_Name, navigationData.toString())
         bundel.putString(Text_Date, navigationData.toString())
         bundel.putInt(Text_ImageView, navigationData.imageView)
-        detailsFragment.arguments = bundel
+        //detailsFragment.arguments = bundel
 
-        parentFragmentManager
-            .beginTransaction()
-            .replace(R.id.activity_container, detailsFragment)
-            .addToBackStack(getString(R.string.Description))
-            .commit()
+        navigateWithBundel(destination, bundel)
     }
 }

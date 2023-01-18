@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.view
 
 import android.util.Log
 import com.example.androidprojecthomework.R
@@ -43,7 +43,7 @@ class DescriptionPresenter @Inject constructor(
             val job = launch {
                 try {
                     authInteractor.logoutUser()
-                    descriptionView.userLoggedOut()
+                    descriptionView.userLoggedOut(R.navigation.auth_graph)
                 }catch (e: Exception){
                     Log.w("exception", "No logout user")
                 }

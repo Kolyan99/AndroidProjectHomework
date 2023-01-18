@@ -2,9 +2,9 @@ package com.example.androidprojecthomework.di
 
 import com.example.androidprojecthomework.domain.auth.AuthInteractor
 import com.example.androidprojecthomework.domain.items.ItemsInteractor
-import com.example.androidprojecthomework.presentation.view.DescriptionPresenter
-import com.example.androidprojecthomework.presentation.view.ItemsPresenter
-import com.example.androidprojecthomework.presentation.view.LoginPresenter
+import com.example.androidprojecthomework.presentation.view.view.DescriptionPresenter
+import com.example.androidprojecthomework.presentation.view.view.ItemsPresenter
+import com.example.androidprojecthomework.presentation.view.auth.LoginPresenter
 import com.example.androidprojecthomework.presentation.view.MainPresenter
 import dagger.Module
 import dagger.Provides
@@ -19,7 +19,7 @@ class PresentationModule {
     @Provides
     fun provideItemsPresenter(
         itemsInteractor: ItemsInteractor
-    ): ItemsPresenter{
+    ): ItemsPresenter {
         return ItemsPresenter(itemsInteractor)
     }
 
@@ -29,12 +29,12 @@ class PresentationModule {
     }
 
     @Provides
-    fun provideLoginPresenter(authInteractor: AuthInteractor): LoginPresenter{
+    fun provideLoginPresenter(authInteractor: AuthInteractor): LoginPresenter {
         return LoginPresenter(authInteractor)
     }
 
     @Provides
-    fun provideDescriptionPresenter(authInteractor: AuthInteractor): DescriptionPresenter{
+    fun provideDescriptionPresenter(authInteractor: AuthInteractor): DescriptionPresenter {
         return DescriptionPresenter(authInteractor)
     }
 

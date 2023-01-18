@@ -1,5 +1,6 @@
-package com.example.androidprojecthomework.presentation.view
+package com.example.androidprojecthomework.presentation.view.view
 
+import android.os.Bundle
 import android.util.Log
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.domain.items.ItemsInteractor
@@ -44,7 +45,7 @@ class ItemsPresenter  @Inject constructor(
     }
 
     fun itemClicked(name: Int, date: Int, imageView: Int){
-        itemsView.itemsClicked(NavigateWithBundel(name,date,imageView))
+        itemsView.itemsClicked(NavigateWithBundel(name,date,imageView), R.id.action_itemsFragment_to_descriptionFragment)
     }
 }
 

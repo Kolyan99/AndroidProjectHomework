@@ -1,6 +1,7 @@
 package com.example.androidprojecthomework.presentation.view
 
 import android.util.Log
+import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.domain.auth.AuthInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
