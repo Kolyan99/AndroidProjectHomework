@@ -54,12 +54,6 @@ class DescriptionFragment : Fragment(), DescriptionView {
         }
     }
 
-//    override fun userLoggedOut() {
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.activity_container, LoginFragment())
-//            .commit()
-//    }
-
     override fun userLoggedOut(graph: Int) {
         replaceGraph(graph)
     }
