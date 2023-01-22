@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.data
+package com.example.androidprojecthomework.data.auth
 
 import com.example.androidprojecthomework.data.sharedprefs.SharedPrefersHelp
 import com.example.androidprojecthomework.domain.auth.AuthRepository

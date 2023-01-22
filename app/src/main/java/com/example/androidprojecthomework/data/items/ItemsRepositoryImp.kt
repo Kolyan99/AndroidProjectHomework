@@ -1,7 +1,6 @@
-package com.example.androidprojecthomework.data
+package com.example.androidprojecthomework.data.items
 
-import android.util.Log
-import com.example.androidprojecthomework.R
+import com.example.androidprojecthomework.data.ApiService
 import com.example.androidprojecthomework.domain.items.ItemsRepository
 import com.example.androidprojecthomework.presentation.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
