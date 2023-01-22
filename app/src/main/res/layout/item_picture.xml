@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     app:cardCornerRadius="15dp"
     android:layout_marginBottom="7dp"
@@ -9,133 +10,132 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="294dp"
         android:layout_marginBottom="10dp"
-        android:background="#6703DA">
+        android:background="#63F9D625">
 
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:src="@drawable/jaguar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_Id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ford mustang"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.179" />
+            app:layout_constraintVertical_bias="0.094" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_Id"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintVertical_bias="0.104" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_Username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            app:layout_constraintVertical_bias="0.322" />
+            app:layout_constraintVertical_bias="0.267" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="204dp"
-            android:text="Sport car"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintHorizontal_bias="0.191"
             app:layout_constraintStart_toEndOf="@+id/tv_Id"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintVertical_bias="0.094" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_website"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="236dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.617"
+            app:layout_constraintHorizontal_bias="0.264"
             app:layout_constraintStart_toEndOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
-            app:layout_constraintVertical_bias="0.208" />
+            app:layout_constraintVertical_bias="0.269" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="236dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.617"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tv_Username"
             app:layout_constraintTop_toBottomOf="@+id/tv_website"
-            app:layout_constraintVertical_bias="0.386" />
+            app:layout_constraintVertical_bias="0.326" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
             android:layout_marginEnd="136dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintHorizontal_bias="0.431"
             app:layout_constraintStart_toEndOf="@+id/tv_email"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintVertical_bias="0.069" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_geo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="156dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.738"
+            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toEndOf="@+id/tv_website"
             app:layout_constraintTop_toBottomOf="@+id/tv_address"
-            app:layout_constraintVertical_bias="0.128" />
+            app:layout_constraintVertical_bias="0.164" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="136dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -150,114 +150,103 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="72dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.775"
+            app:layout_constraintHorizontal_bias="0.325"
             app:layout_constraintStart_toEndOf="@+id/tv_geo"
             app:layout_constraintTop_toBottomOf="@+id/tv_bs"
-            app:layout_constraintVertical_bias="0.128" />
+            app:layout_constraintVertical_bias="0.58" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_suite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintHorizontal_bias="0.038"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_Username"
-            app:layout_constraintVertical_bias="0.692" />
+            app:layout_constraintVertical_bias="0.491" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="220dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintHorizontal_bias="0.017"
             app:layout_constraintStart_toEndOf="@+id/tv_suite"
             app:layout_constraintTop_toBottomOf="@+id/tv_phone"
-            app:layout_constraintVertical_bias="0.68" />
+            app:layout_constraintVertical_bias="0.687" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_zipcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="136dp"
-            android:textColor="@color/black"
-            android:textStyle="italic"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginBottom="44dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_city"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_lat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="76dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/tv_company"
             app:layout_constraintTop_toBottomOf="@+id/tv_street"
-            app:layout_constraintVertical_bias="0.244" />
+            app:layout_constraintVertical_bias="0.25" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_lng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="72dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.543"
             app:layout_constraintStart_toEndOf="@+id/tv_zipcode"
-            app:layout_constraintTop_toBottomOf="@+id/tv_lat" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_lat"
+            app:layout_constraintVertical_bias="0.431" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_catchPhrase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sport car"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="184dp"
             android:textColor="@color/black"
             android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.82"
-            app:layout_constraintStart_toEndOf="@+id/tv_bs"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_bs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="84dp"
-            android:text="Sport car"
             android:textColor="@color/black"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.345"
             app:layout_constraintStart_toEndOf="@+id/tv_address"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintVertical_bias="0.069" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

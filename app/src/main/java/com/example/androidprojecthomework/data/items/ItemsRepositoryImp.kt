@@ -19,19 +19,18 @@ class ItemsRepositoryImp @Inject constructor(
                 it.map {
                     ItemsModel(
                         it.id,
+                        it.personName,
                         it.username,
                         it.email,
-                        it.website,
                         it.phone,
-                        it.address,
-                        it.geo,
-                        it.company,
+                        it.website,
                         it.address.street,
                         it.address.suite,
                         it.address.city,
                         it.address.zipcode,
-                        it.geo.lat,
-                        it.geo.lng,
+                        it.address.geo.lat,
+                        it.address.geo.lng,
+                        it.company.companyName,
                         it.company.catchPhrase,
                         it.company.bs
                     )
