@@ -1,5 +1,6 @@
 package com.example.androidprojecthomework.data.items
 
+import android.util.Log
 import com.example.androidprojecthomework.data.ApiService
 import com.example.androidprojecthomework.domain.items.ItemsRepository
 import com.example.androidprojecthomework.presentation.model.ItemsModel
@@ -15,8 +16,9 @@ class ItemsRepositoryImp @Inject constructor(
         return withContext(Dispatchers.IO) {
             val response = apiService.getData()
             response.body()?.let {
-                it.map{
-                    ItemsModel(it.id,
+                it.map {
+                    ItemsModel(
+                        it.id,
                         it.username,
                         it.email,
                         it.website,
@@ -31,7 +33,8 @@ class ItemsRepositoryImp @Inject constructor(
                         it.geo.lat,
                         it.geo.lng,
                         it.company.catchPhrase,
-                        it.company.bs)
+                        it.company.bs
+                    )
                 }
                 } ?: kotlin.run {
                     emptyList()

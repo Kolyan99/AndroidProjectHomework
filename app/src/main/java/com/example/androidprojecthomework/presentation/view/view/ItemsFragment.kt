@@ -1,6 +1,7 @@
 package com.example.androidprojecthomework.presentation.view.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,24 +61,36 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onElement(
         id: Int,
+        personName: String,
         username: String,
         email: String,
-        website: String,
         phone: String,
-        address: Address,
-        geo: Geo,
-        company: Company,
+        website: String,
         street: String,
         suite: String,
         city: String,
         zipcode: String,
         lat: String,
         lng: String,
+        companyName: String,
         catchPhrase: String,
-        bs: String
+        bs: String,
     ) {
-        itemsPresenter.itemClicked(id, username, email, website, phone, address, geo, company, street, suite, city, zipcode, lat, lng, catchPhrase, bs)
-
+        itemsPresenter.itemClicked(id,
+            personName,
+            username,
+            email,
+            phone,
+            website,
+            street,
+            suite,
+            city,
+            zipcode,
+            lat,
+            lng,
+            companyName,
+            catchPhrase,
+            bs)
     }
 
     override fun itemsReceived(list: List<ItemsModel>) {

@@ -7,21 +7,18 @@ import com.google.gson.annotations.SerializedName
 
 data class ItemsModel(
     val id: Int,
-    @SerializedName("name")
+    val personName: String,
     val username: String,
     val email: String,
-    val website: String,
     val phone: String,
-    val address: Address,
-    val geo: Geo,
-    val company: Company,
+    val website: String,
     val street: String,
     val suite: String,
     val city: String,
     val zipcode: String,
     val lat: String,
     val lng: String,
-    @SerializedName("name")
+    val companyName: String,
     val catchPhrase: String,
     val bs: String
 )

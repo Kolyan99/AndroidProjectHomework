@@ -16,9 +16,6 @@ class ItemsViewHolder(
         viewBinding.tvEmail.text = itemsModel.email
         viewBinding.tvWebsite.text = itemsModel.website
         viewBinding.tvPhone.text = itemsModel.phone
-        viewBinding.tvAddress.text = itemsModel.address.toString()
-        viewBinding.tvGeo.text = itemsModel.geo.toString()
-        viewBinding.tvCompany.text = itemsModel.company.toString()
         viewBinding.tvStreet.text = itemsModel.street
         viewBinding.tvSuite.text = itemsModel.suite
         viewBinding.tvCity.text = itemsModel.city
@@ -28,25 +25,24 @@ class ItemsViewHolder(
         viewBinding.tvCatchPhrase.text = itemsModel.catchPhrase
         viewBinding.tvBs.text = itemsModel.bs
 
-//          imageView.setOnClickListener {
+//        imageView.setOnClickListener {
 //            itemsListener.onClick()
 //        }
         itemView.setOnClickListener {
             itemsListener.onElement(
                 itemsModel.id,
+                itemsModel.personName,
                 itemsModel.username,
                 itemsModel.email,
-                itemsModel.website,
                 itemsModel.phone,
-                itemsModel.address,
-                itemsModel.geo,
-                itemsModel.company,
+                itemsModel.website,
                 itemsModel.street,
                 itemsModel.suite,
                 itemsModel.city,
                 itemsModel.zipcode,
                 itemsModel.lat,
                 itemsModel.lng,
+                itemsModel.companyName,
                 itemsModel.catchPhrase,
                 itemsModel.bs
             )

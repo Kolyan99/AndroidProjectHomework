@@ -50,41 +50,54 @@ class ItemsPresenter  @Inject constructor(
 
     fun itemClicked(
         id: Int,
+        personName: String,
         username: String,
         email: String,
-        website: String,
         phone: String,
-        address: Address,
-        geo: Geo,
-        company: Company,
+        website: String,
         street: String,
         suite: String,
         city: String,
         zipcode: String,
         lat: String,
         lng: String,
+        companyName: String,
         catchPhrase: String,
-        bs: String){
-        itemsView.itemsClicked(NavigateWithBundel(id, username, email, website, phone, address, geo, company, street, suite, city, zipcode, lat, lng, catchPhrase, bs)
-            , R.id.action_itemsFragment_to_descriptionFragment)
+        bs: String,
+        ){
+        itemsView.itemsClicked(NavigateWithBundel(id,
+            personName,
+            username,
+            email,
+            phone,
+            website,
+            street,
+            suite,
+            city,
+            zipcode,
+            lat,
+            lng,
+            companyName,
+            catchPhrase,
+            bs)
+    , R.id.action_itemsFragment_to_descriptionFragment)
     }
 }
 
 data class NavigateWithBundel(
     val id: Int,
+    val personName: String,
     val username: String,
     val email: String,
-    val website: String,
     val phone: String,
-    val address: Address,
-    val geo: Geo,
-    val company: Company,
+    val website: String,
     val street: String,
     val suite: String,
     val city: String,
     val zipcode: String,
     val lat: String,
     val lng: String,
+    val companyName: String,
     val catchPhrase: String,
     val bs: String
 )

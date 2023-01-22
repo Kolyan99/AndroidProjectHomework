@@ -24,7 +24,6 @@ class ItemsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {
         val viewBinding = ItemPictureBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-     //   val view = LayoutInflater.from(parent.context).inflate(R.layout.item_picture, parent,false)
         return ItemsViewHolder(viewBinding, itemsListener)
     }
 

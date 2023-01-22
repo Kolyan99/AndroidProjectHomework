@@ -1,30 +1,24 @@
 package com.example.androidprojecthomework.presentation.adapter.listener
 
-import com.example.androidprojecthomework.data.model.Address
-import com.example.androidprojecthomework.data.model.Company
-import com.example.androidprojecthomework.data.model.Geo
-
 interface ItemsListener {
 
     fun onClick()
 
     fun onElement(
-        name: Int,
-        date: String,
-        imageView: String,
-        website: String,
+        id: Int,
+        personName: String,
+        username: String,
+        email: String,
         phone: String,
-        address: Address,
-        geo: Geo,
-        company: Company,
+        website: String,
         street: String,
         suite: String,
         city: String,
         zipcode: String,
         lat: String,
         lng: String,
+        companyName: String,
         catchPhrase: String,
         bs: String
-    ) {
-    }
+    )
 }
