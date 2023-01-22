@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidprojecthomework.data.model.Address
+import com.example.androidprojecthomework.data.model.Company
+import com.example.androidprojecthomework.data.model.Geo
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
-import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
-import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
 import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.ItemsModel
-import com.example.androidprojecthomework.utils.NavHelp.navigate
 import com.example.androidprojecthomework.utils.NavHelp.navigateWithBundel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -58,8 +58,25 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         itemsPresenter.imageViewClicked()
     }
 
-    override fun onElement(name: Int, date: Int, imageView: Int) {
-        itemsPresenter.itemClicked(name, date, imageView)
+    override fun onElement(
+        id: Int,
+        username: String,
+        email: String,
+        website: String,
+        phone: String,
+        address: Address,
+        geo: Geo,
+        company: Company,
+        street: String,
+        suite: String,
+        city: String,
+        zipcode: String,
+        lat: String,
+        lng: String,
+        catchPhrase: String,
+        bs: String
+    ) {
+        itemsPresenter.itemClicked(id, username, email, website, phone, address, geo, company, street, suite, city, zipcode, lat, lng, catchPhrase, bs)
 
     }
 
@@ -76,9 +93,7 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         val bundel = Bundle()
         bundel.putString(Text_Name, navigationData.toString())
         bundel.putString(Text_Date, navigationData.toString())
-        bundel.putInt(Text_ImageView, navigationData.imageView)
         //detailsFragment.arguments = bundel
-
         navigateWithBundel(destination, bundel)
     }
 }

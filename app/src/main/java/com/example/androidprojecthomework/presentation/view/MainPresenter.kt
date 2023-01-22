@@ -24,7 +24,7 @@ class MainPresenter @Inject constructor(
          val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
              Log.w("exception", exception)
          }
-         CoroutineScope(Dispatchers.IO).launch(coroutineExceptionHandler) {
+         CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
              val job = launch {
                  try {
                      val doesUserExist = authInteractor.checkUserExsist()

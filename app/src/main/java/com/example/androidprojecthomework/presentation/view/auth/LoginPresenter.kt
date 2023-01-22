@@ -9,7 +9,6 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor(
     private val authInteractor: AuthInteractor
 ) {
-
     private lateinit var loginView: LoginView
 
     fun setView(loginFragment: LoginFragment){
@@ -18,14 +17,15 @@ class LoginPresenter @Inject constructor(
 
 
     fun loginUser(userName: String, userPassword: String){
+
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exception", exception)
         }
-        CoroutineScope(Dispatchers.IO).launch(coroutineExceptionHandler) {
+        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
             val job = launch {
                 try {
                     authInteractor.loginUser(userName, userPassword)
-                    loginView.userLogged(R.id.action_loginFragment_to_homeFragment, R.id.loginFragment)
+                  //  loginView.userLogged(R.id.action_loginFragment_to_homeFragment, R.id.loginFragment)
                 }catch (e: Exception){
                     Log.w("exception", "loginUser FAILED")
                 }

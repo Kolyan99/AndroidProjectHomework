@@ -9,8 +9,10 @@ import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentHomeBinding
 import com.example.androidprojecthomework.presentation.view.view.ItemsFragment
 import com.example.androidprojecthomework.utils.NavHelp.replaceGraph
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), HomeView {
 
     private var _viwBinding: FragmentHomeBinding? = null
@@ -36,9 +38,7 @@ class HomeFragment : Fragment(), HomeView {
 
         viwBinding.btnHome.setOnClickListener {
            homePresenter.goItems()
-
         }
-
     }
 
     override fun goItems(destanation: Int) {

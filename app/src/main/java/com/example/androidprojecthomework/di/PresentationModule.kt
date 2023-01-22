@@ -6,6 +6,7 @@ import com.example.androidprojecthomework.presentation.view.view.DescriptionPres
 import com.example.androidprojecthomework.presentation.view.view.ItemsPresenter
 import com.example.androidprojecthomework.presentation.view.auth.LoginPresenter
 import com.example.androidprojecthomework.presentation.view.MainPresenter
+import com.example.androidprojecthomework.presentation.view.auth.HomePresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +22,11 @@ class PresentationModule {
         itemsInteractor: ItemsInteractor
     ): ItemsPresenter {
         return ItemsPresenter(itemsInteractor)
+    }
+
+    @Provides
+    fun provideHomePresenter(authInteractor: AuthInteractor): HomePresenter {
+        return HomePresenter(authInteractor)
     }
 
     @Provides

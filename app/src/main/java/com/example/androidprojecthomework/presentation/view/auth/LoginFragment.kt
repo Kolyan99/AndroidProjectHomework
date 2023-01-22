@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
+import com.example.androidprojecthomework.utils.NavHelp.navigate
 import com.example.androidprojecthomework.utils.NavHelp.navigateWithDeleteBackStack
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -36,15 +38,19 @@ class LoginFragment : Fragment(), LoginView {
 
 
         viewBinding.button.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, HomeFragment())
+                .commit()
             loginPresenter.loginUser(
                 viewBinding.editText.text.toString(),
-                viewBinding.editText2.text.toString()
+                viewBinding.editText2.text.toString(),
             )
         }
     }
 
-    override fun userLogged(destination: Int, fragmentRemove: Int) {
-        navigateWithDeleteBackStack(destination,fragmentRemove)
-    }
+
+ // override fun userLogged(destination: Int, fragmentRemove: Int) {
+    //    navigateWithDeleteBackStack(destination,fragmentRemove)
+   // }
 }
 
