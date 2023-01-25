@@ -7,7 +7,11 @@ class ItemsInteractor @Inject constructor(
     private val itemsRepository: ItemsRepository
     ) {
 
-    suspend fun getData():List<ItemsModel>{
-       return  itemsRepository.getData()
+    suspend fun getData(){
+        itemsRepository.getData()
+    }
+
+    suspend fun showData(): List<ItemsModel>{
+        return itemsRepository.showData()
     }
 }

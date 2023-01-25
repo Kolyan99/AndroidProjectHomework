@@ -31,8 +31,9 @@ class ItemsPresenter  @Inject constructor(
         CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler){
             val job = launch {
                 try {
-                    val items = itemsInteractor.getData()
-                    itemsView.itemsReceived(items)
+                     itemsInteractor.getData()
+                    val itemsModel = itemsInteractor.showData()
+                    itemsView.itemsReceived(itemsModel)
                 }catch (e: Exception){
                     Log.w("exception", "No cars")
                 }
