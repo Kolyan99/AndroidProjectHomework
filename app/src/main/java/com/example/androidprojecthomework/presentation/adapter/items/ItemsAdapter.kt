@@ -1,9 +1,8 @@
-package com.example.androidprojecthomework.presentation.adapter
+package com.example.androidprojecthomework.presentation.adapter.items
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.ItemPictureBinding
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.ItemsModel

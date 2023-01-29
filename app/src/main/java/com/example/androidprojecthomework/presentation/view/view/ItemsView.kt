@@ -10,4 +10,6 @@ interface ItemsView {
     fun imageViewClick(msg: Int)
 
     fun itemsClicked(navigationData: NavigateWithBundel, destination: Int)
+
+    fun onFavClicked(int: Int)
 }

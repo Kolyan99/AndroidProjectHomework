@@ -19,4 +19,9 @@
         android:name="com.example.androidprojecthomework.presentation.view.view.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.androidprojecthomework.presentation.view.view.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

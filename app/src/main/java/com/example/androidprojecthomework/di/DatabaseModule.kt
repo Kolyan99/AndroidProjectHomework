@@ -1,7 +1,7 @@
 package com.example.androidprojecthomework.di
 
 import android.content.Context
-import com.example.androidprojecthomework.data.database.dao.ItemsDao
+import com.example.androidprojecthomework.data.database.dao.ItemsDAO
 import com.example.androidprojecthomework.data.database.dao.ItemsDatabase
 import dagger.Module
 import dagger.Provides
@@ -17,11 +17,8 @@ class DatabaseModule {
         return ItemsDatabase.getItemsDatabaseInstance(context)
 
     }
-
     @Provides
-    fun provideItemsDao(itemsDatabase: ItemsDatabase): ItemsDao{
+    fun provideItemsDao(itemsDatabase: ItemsDatabase): ItemsDAO{
         return itemsDatabase.getItemsDao()
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.example.androidprojecthomework.presentation.adapter
+package com.example.androidprojecthomework.presentation.adapter.items
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.databinding.ItemPictureBinding
@@ -46,6 +46,10 @@ class ItemsViewHolder(
                 itemsModel.catchPhrase,
                 itemsModel.bs
             )
+        }
+
+        viewBinding.btnFav.setOnClickListener {
+            itemsListener.onFavClicked(itemsModel.id)
         }
     }
 }

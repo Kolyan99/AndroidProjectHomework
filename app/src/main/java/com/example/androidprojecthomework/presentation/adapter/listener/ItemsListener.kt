@@ -21,4 +21,6 @@ interface ItemsListener {
         catchPhrase: String,
         bs: String
     )
+
+    fun onFavClicked(id: Int)
 }

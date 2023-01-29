@@ -1,20 +1,16 @@
 package com.example.androidprojecthomework.presentation.view.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androidprojecthomework.data.model.Address
-import com.example.androidprojecthomework.data.model.Company
-import com.example.androidprojecthomework.data.model.Geo
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
-import com.example.androidprojecthomework.presentation.adapter.ItemsAdapter
+import com.example.androidprojecthomework.presentation.adapter.items.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.ItemsModel
 import com.example.androidprojecthomework.utils.NavHelp.navigateWithBundel
@@ -55,6 +51,7 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     }
 
+
     override fun onClick() {
         itemsPresenter.imageViewClicked()
     }
@@ -91,6 +88,10 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
             companyName,
             catchPhrase,
             bs)
+    }
+
+    override fun onFavClicked(id: Int) {
+        itemsPresenter.onFavClicked(id)
     }
 
     override fun itemsReceived(list: List<ItemsModel>) {

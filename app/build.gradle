@@ -9,8 +9,12 @@ android {
     namespace 'com.example.androidprojecthomework'
     compileSdk 32
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 
     defaultConfig {

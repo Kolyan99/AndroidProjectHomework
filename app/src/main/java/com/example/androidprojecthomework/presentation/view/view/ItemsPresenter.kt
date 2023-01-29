@@ -13,28 +13,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ItemsPresenter  @Inject constructor(
+class ItemsPresenter @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ) {
 
     private lateinit var itemsView: ItemsView
 
-    fun setView(itemsFragment: ItemsFragment){
+    fun setView(itemsFragment: ItemsFragment) {
         itemsView = itemsFragment
     }
 
-    fun getItems(){
+    fun getItems() {
 
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exception", exception)
         }
-        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler){
+        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
             val job = launch {
                 try {
-                     itemsInteractor.getData()
+                    itemsInteractor.getData()
                     val itemsModel = itemsInteractor.showData()
                     itemsView.itemsReceived(itemsModel)
-                }catch (e: Exception){
+                } catch (e: Exception) {
                     Log.w("exception", "No cars")
                 }
             }
@@ -44,9 +44,8 @@ class ItemsPresenter  @Inject constructor(
 
     }
 
-    fun imageViewClicked(){
+    fun imageViewClicked() {
         itemsView.imageViewClick(R.string.image_click)
-
     }
 
     fun itemClicked(
@@ -65,23 +64,44 @@ class ItemsPresenter  @Inject constructor(
         companyName: String,
         catchPhrase: String,
         bs: String,
-        ){
-        itemsView.itemsClicked(NavigateWithBundel(id,
-            personName,
-            username,
-            email,
-            phone,
-            website,
-            street,
-            suite,
-            city,
-            zipcode,
-            lat,
-            lng,
-            companyName,
-            catchPhrase,
-            bs)
-    , R.id.action_itemsFragment_to_descriptionFragment)
+    ) {
+        itemsView.itemsClicked(
+            NavigateWithBundel(
+                id,
+                personName,
+                username,
+                email,
+                phone,
+                website,
+                street,
+                suite,
+                city,
+                zipcode,
+                lat,
+                lng,
+                companyName,
+                catchPhrase,
+                bs
+            ), R.id.action_itemsFragment_to_descriptionFragment
+        )
+    }
+
+
+    fun onFavClicked(id: Int) {
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exception", exception)
+        }
+        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
+            val job = launch {
+                try {
+                    itemsInteractor.onFavClicked(id)
+                } catch (e: Exception) {
+                    Log.w("Exception", "No id")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
     }
 }
 

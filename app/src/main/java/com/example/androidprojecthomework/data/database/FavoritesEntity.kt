@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "itemsEntity")
-data class ItemsEntity(
+@Entity(tableName = "FavoritesEntity")
+data class FavoritesEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
     val id: Int,
@@ -38,7 +38,3 @@ data class ItemsEntity(
     @ColumnInfo(name ="lng")
     val lng: String,
 )
-
-
-
-

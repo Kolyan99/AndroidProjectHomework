@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.androidprojecthomework.data.database.FavoritesEntity
 import com.example.androidprojecthomework.data.database.ItemsEntity
 
-@Database(entities = [ItemsEntity::class], version = 1, exportSchema = false)
+@Database(entities = [ItemsEntity::class, FavoritesEntity::class], version = 1, exportSchema = false)
 abstract class ItemsDatabase: RoomDatabase() {
 
-    abstract fun getItemsDao(): ItemsDao
+    abstract fun getItemsDao(): ItemsDAO
 
     companion object{
         private const val DATABASE_NAME = "Items_DB"
