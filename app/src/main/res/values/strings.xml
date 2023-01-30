@@ -46,4 +46,5 @@
     <string name="msg_descript">No information</string>
     <string name="lol">rkghr</string>
     <string name="go_items">Go to items</string>
+    <string name="go_favorites">Go Favorites</string>
 </resources>

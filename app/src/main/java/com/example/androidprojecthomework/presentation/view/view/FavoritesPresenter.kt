@@ -28,7 +28,7 @@ class FavoritesPresenter @Inject constructor(
             val job = launch {
                 try {
                     val favoritesItems = itemsInteractor.getFavorites()
-                    favoritesView.getFavorites(favoritesItems)
+                    favoritesView.favReceived(favoritesItems)
                 } catch (e: Exception) {
                     Log.w("Exception", " No Favorites")
                 }

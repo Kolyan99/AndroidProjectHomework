@@ -3,8 +3,11 @@ package com.example.androidprojecthomework.presentation.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +16,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainView {
 
-    private var _binding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
 
@@ -22,18 +25,25 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
-        setContentView(_binding!!.root)
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
 
         mainPresenter.setView(this)
-
         mainPresenter.checkUserExists()
 
-        val navHostFragment = supportFragmentManager.findFragmentById(
-            R.id.fragmentContainerView
-        ) as NavHostFragment
-
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
+
+        binding.bottomNavigation.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{_, nav, _ ->
+            if(nav.id == R.id.loginFragment || nav.id == R.id.homeFragment){
+                binding.bottomNavigation.visibility = GONE
+            }else{
+                binding.bottomNavigation.visibility = VISIBLE
+            }
+        }
+
 
 
     }

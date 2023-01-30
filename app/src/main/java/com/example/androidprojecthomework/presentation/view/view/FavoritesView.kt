@@ -4,5 +4,5 @@ import com.example.androidprojecthomework.presentation.model.FavoritesModel
 
 interface FavoritesView {
 
-    fun getFavorites(list: List<FavoritesModel>)
+    fun favReceived(list: List<FavoritesModel>)
 }

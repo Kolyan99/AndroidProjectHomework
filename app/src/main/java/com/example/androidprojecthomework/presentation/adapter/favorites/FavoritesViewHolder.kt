@@ -14,8 +14,21 @@ class FavoritesViewHolder(
 ) : RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(favItems: FavoritesModel) {
+        viewBinding.tvId.text = favItems.id.toString()
         viewBinding.tvName.text = favItems.personName
-        Picasso.get().load(Uri.parse(favItems.city)).into(viewBinding.imageView)
+        viewBinding.tvUsername.text = favItems.username
+        viewBinding.tvEmail.text = favItems.email
+        viewBinding.tvPhone.text = favItems.phone
+        viewBinding.tvWebsite.text = favItems.website
+        viewBinding.tvStreet.text = favItems.street
+        viewBinding.tvSuite.text = favItems.suite
+        viewBinding.tvCity.text = favItems.city
+        viewBinding.tvZipcode.text = favItems.zipcode
+        viewBinding.tvLat.text = favItems.lat
+        viewBinding.tvLng.text = favItems.lng
+        viewBinding.tvCompany.text = favItems.companyName
+        viewBinding.tvCatchPhrase.text = favItems.catchPhrase
+        viewBinding.tvBs.text = favItems.bs
 
     }
 }

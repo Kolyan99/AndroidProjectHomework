@@ -48,9 +48,9 @@ class FavoritesFragment : Fragment(), FavoritesView {
         favoritesPresenter.getFavorites()
     }
 
-    override fun getFavorites(list: List<FavoritesModel>) {
-        favoritesAdapter.submitList(list)
 
+    override fun favReceived(list: List<FavoritesModel>) {
+        favoritesAdapter.submitList(list)
     }
 
 
