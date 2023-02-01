@@ -24,11 +24,10 @@ class ItemsRepositoryImp @Inject constructor(
 
             if (!itemsDao.doesItemsEntityExist()) {
                 val response = apiService.getData()
-
                 response.body()?.let {
                     it.map {
                         val itemsEntity = ItemsEntity(
-                            Random.nextInt(),
+                            it.id,
                             it.personName,
                             it.username,
                             it.email,
@@ -57,7 +56,7 @@ class ItemsRepositoryImp @Inject constructor(
             itemsEntity.map { itemsList ->
                 itemsList.map { item ->
                     ItemsModel(
-                        Random.nextInt(),
+                        item.id,
                         item.personName,
                         item.username,
                         item.email,
@@ -126,27 +125,29 @@ class ItemsRepositoryImp @Inject constructor(
         }
     }
 
-    override suspend fun getFavorites(): List<FavoritesModel> {
+    override suspend fun getFavorites(): Flow<List<FavoritesModel>> {
         return withContext(Dispatchers.IO) {
             val favoritesEntity = itemsDao.getFavoritesEntities()
-            favoritesEntity.map {
-                FavoritesModel(
-                    it.id,
-                    it.personName,
-                    it.username,
-                    it.email,
-                    it.phone,
-                    it.website,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.lat,
-                    it.lng,
-                    it.companyName,
-                    it.catchPhrase,
-                    it.bs
-                )
+            favoritesEntity.map {favoriteList ->
+                favoriteList.map {favorite ->
+                    FavoritesModel(
+                        favorite.id,
+                        favorite.personName,
+                        favorite.username,
+                        favorite.email,
+                        favorite.phone,
+                        favorite.website,
+                        favorite.street,
+                        favorite.suite,
+                        favorite.city,
+                        favorite.zipcode,
+                        favorite.lat,
+                        favorite.lng,
+                        favorite.companyName,
+                        favorite.catchPhrase,
+                        favorite.bs
+                    )
+                }
             }
         }
     }

@@ -22,14 +22,14 @@ interface ItemsDAO {
     @Query("SELECT * FROM itemsEntity WHERE id=:searchText ")
     fun findItemsEntityById(searchText: Int): ItemsEntity
 
-    @Query("DELETE FROM ItemsEntity WHERE id =:id")
+    @Query("DELETE FROM itemsEntity WHERE id =:id")
     fun deleteItemEntityById(id: Int)
 
     @Insert
     fun insertFavoritesEntity(favoritesEntity: FavoritesEntity)
 
     @Query("SELECT * FROM FavoritesEntity")
-    fun getFavoritesEntities(): List<FavoritesEntity>
+    fun getFavoritesEntities(): Flow<List<FavoritesEntity>>
 
     @Query("DELETE FROM FavoritesEntity WHERE id = :id")
     fun deleteFavoriteEntityById(id: Int)

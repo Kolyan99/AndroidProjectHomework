@@ -5,6 +5,7 @@ import com.example.androidprojecthomework.domain.items.ItemsInteractor
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,7 +29,9 @@ class FavoritesPresenter @Inject constructor(
             val job = launch {
                 try {
                     val favoritesItems = itemsInteractor.getFavorites()
-                    favoritesView.favReceived(favoritesItems)
+                    favoritesItems.collect{
+                        favoritesView.favReceived(it)
+                    }
                 } catch (e: Exception) {
                     Log.w("Exception", " No Favorites")
                 }

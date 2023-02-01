@@ -26,7 +26,7 @@ class ItemsInteractor @Inject constructor(
         itemsRepository.favClicked(foundItems)
     }
 
-    suspend fun getFavorites(): List<FavoritesModel>{
+    suspend fun getFavorites(): Flow<List<FavoritesModel>>{
         return itemsRepository.getFavorites()
     }
 

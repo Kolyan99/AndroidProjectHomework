@@ -14,7 +14,7 @@ interface ItemsRepository {
 
     suspend fun favClicked(itemsModel: ItemsModel)
 
-    suspend fun getFavorites(): List<FavoritesModel>
+    suspend fun getFavorites(): Flow<List<FavoritesModel>>
 
     suspend fun onDeleteItem(id: Int)
 
