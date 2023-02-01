@@ -23,4 +23,7 @@ interface ItemsListener {
     )
 
     fun onFavClicked(id: Int)
+
+    fun onDeleteItem(id: Int)
+
 }

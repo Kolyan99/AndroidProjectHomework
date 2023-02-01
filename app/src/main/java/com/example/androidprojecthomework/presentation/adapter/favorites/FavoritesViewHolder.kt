@@ -4,13 +4,15 @@ import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.databinding.ItemFavoritesBinding
 import com.example.androidprojecthomework.databinding.ItemPictureBinding
+import com.example.androidprojecthomework.presentation.adapter.listener.FavoritesListener
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.FavoritesModel
 import com.example.androidprojecthomework.presentation.model.ItemsModel
 import com.squareup.picasso.Picasso
 
 class FavoritesViewHolder(
-    private val viewBinding: ItemFavoritesBinding
+    private val viewBinding: ItemFavoritesBinding,
+    private val favoritesListener: FavoritesListener
 ) : RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(favItems: FavoritesModel) {
@@ -29,6 +31,11 @@ class FavoritesViewHolder(
         viewBinding.tvCompany.text = favItems.companyName
         viewBinding.tvCatchPhrase.text = favItems.catchPhrase
         viewBinding.tvBs.text = favItems.bs
+
+
+        viewBinding.deleteFavorite.setOnClickListener {
+            favoritesListener.onDeleteFavorite(favItems.id)
+        }
 
     }
 }

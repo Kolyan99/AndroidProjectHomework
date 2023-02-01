@@ -33,7 +33,9 @@ class ItemsPresenter @Inject constructor(
                 try {
                     itemsInteractor.getData()
                     val itemsModel = itemsInteractor.showData()
-                    itemsView.itemsReceived(itemsModel)
+                    itemsModel.collect{
+                        itemsView.itemsReceived(it)
+                    }
                 } catch (e: Exception) {
                     Log.w("exception", "No cars")
                 }
@@ -97,6 +99,23 @@ class ItemsPresenter @Inject constructor(
                     itemsInteractor.onFavClicked(id)
                 } catch (e: Exception) {
                     Log.w("Exception", "No id")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
+    }
+
+    fun onDeleteItem(id: Int){
+        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+            Log.w("exception", exception)
+        }
+        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler){
+            val job = launch {
+                try {
+                    itemsInteractor.onDeleteItem(id)
+                }catch (e: Exception){
+                    Log.w("Exception", "exception")
                 }
             }
             job.join()

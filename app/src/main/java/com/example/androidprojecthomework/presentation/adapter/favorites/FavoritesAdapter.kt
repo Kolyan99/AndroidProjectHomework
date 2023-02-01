@@ -6,18 +6,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidprojecthomework.databinding.ItemFavoritesBinding
 import com.example.androidprojecthomework.databinding.ItemPictureBinding
 import com.example.androidprojecthomework.presentation.adapter.items.ItemsViewHolder
+import com.example.androidprojecthomework.presentation.adapter.listener.FavoritesListener
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.FavoritesModel
 import com.example.androidprojecthomework.presentation.model.ItemsModel
 
 class FavoritesAdapter(
-
-): RecyclerView.Adapter<FavoritesViewHolder>() {
+    private val favoritesListener: FavoritesListener
+) : RecyclerView.Adapter<FavoritesViewHolder>() {
 
 
     private var listItems = mutableListOf<FavoritesModel>()
 
-    fun submitList(list: List<FavoritesModel>){
+    fun submitList(list: List<FavoritesModel>) {
         this.listItems.clear()
         this.listItems.addAll(list.toMutableList())
         this.notifyDataSetChanged()
@@ -25,8 +26,9 @@ class FavoritesAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
-        val viewBinding = ItemFavoritesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return FavoritesViewHolder(viewBinding)
+        val viewBinding =
+            ItemFavoritesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FavoritesViewHolder(viewBinding, favoritesListener)
     }
 
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {

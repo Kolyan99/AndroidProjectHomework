@@ -11,5 +11,4 @@ interface ItemsView {
 
     fun itemsClicked(navigationData: NavigateWithBundel, destination: Int)
 
-    fun onFavClicked(int: Int)
 }

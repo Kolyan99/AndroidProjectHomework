@@ -11,12 +11,13 @@ import com.example.androidprojecthomework.databinding.FragmentFavoritesBinding
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
 import com.example.androidprojecthomework.presentation.adapter.favorites.FavoritesAdapter
 import com.example.androidprojecthomework.presentation.adapter.items.ItemsAdapter
+import com.example.androidprojecthomework.presentation.adapter.listener.FavoritesListener
 import com.example.androidprojecthomework.presentation.model.FavoritesModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FavoritesFragment : Fragment(), FavoritesView {
+class FavoritesFragment : Fragment(), FavoritesView, FavoritesListener  {
 
 
     @Inject
@@ -41,7 +42,7 @@ class FavoritesFragment : Fragment(), FavoritesView {
 
         favoritesPresenter.setView(this)
 
-        favoritesAdapter = FavoritesAdapter()
+        favoritesAdapter = FavoritesAdapter(this)
         viewBinding.recyclerView.adapter = favoritesAdapter
         viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -51,6 +52,10 @@ class FavoritesFragment : Fragment(), FavoritesView {
 
     override fun favReceived(list: List<FavoritesModel>) {
         favoritesAdapter.submitList(list)
+    }
+
+    override fun onDeleteFavorite(id: Int) {
+        favoritesPresenter.onDeleteFavorite(id)
     }
 
 

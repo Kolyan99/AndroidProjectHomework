@@ -49,6 +49,4 @@ class PresentationModule {
         return FavoritesPresenter(itemsInteractor)
     }
 
-
-
 }

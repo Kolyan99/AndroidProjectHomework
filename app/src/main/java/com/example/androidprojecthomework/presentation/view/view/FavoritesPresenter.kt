@@ -37,4 +37,21 @@ class FavoritesPresenter @Inject constructor(
             job.cancel()
         }
     }
+
+    fun onDeleteFavorite(id: Int){
+        val coroutineExceptionHandler = CoroutineExceptionHandler{_, exception ->
+            Log.w("exception", exception)
+        }
+        CoroutineScope(Dispatchers.IO).launch(coroutineExceptionHandler){
+            val job = launch {
+                try {
+                    itemsInteractor.onDeleteFavorite(id)
+                }catch (e: Exception){
+                    Log.w("Exception", "exception")
+                }
+            }
+            job.join()
+            job.cancel()
+        }
+    }
 }

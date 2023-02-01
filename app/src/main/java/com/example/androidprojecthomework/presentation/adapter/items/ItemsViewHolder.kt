@@ -25,9 +25,7 @@ class ItemsViewHolder(
         viewBinding.tvCatchPhrase.text = itemsModel.catchPhrase
         viewBinding.tvBs.text = itemsModel.bs
 
-//        imageView.setOnClickListener {
-//            itemsListener.onClick()
-//        }
+
         itemView.setOnClickListener {
             itemsListener.onElement(
                 itemsModel.id,
@@ -50,6 +48,10 @@ class ItemsViewHolder(
 
         viewBinding.btnFav.setOnClickListener {
             itemsListener.onFavClicked(itemsModel.id)
+        }
+
+        viewBinding.deleteItem.setOnClickListener {
+            itemsListener.onDeleteItem(itemsModel.id)
         }
     }
 }

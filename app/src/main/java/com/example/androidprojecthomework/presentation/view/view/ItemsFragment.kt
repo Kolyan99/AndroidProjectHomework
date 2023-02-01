@@ -94,6 +94,10 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         itemsPresenter.onFavClicked(id)
     }
 
+    override fun onDeleteItem(id: Int) {
+        itemsPresenter.onDeleteItem(id)
+    }
+
     override fun itemsReceived(list: List<ItemsModel>) {
         itemsAdapter.submitList(list)
     }

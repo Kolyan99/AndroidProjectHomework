@@ -8,6 +8,8 @@ import com.example.androidprojecthomework.domain.items.ItemsRepository
 import com.example.androidprojecthomework.presentation.model.FavoritesModel
 import com.example.androidprojecthomework.presentation.model.ItemsModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.random.Random
@@ -49,27 +51,29 @@ class ItemsRepositoryImp @Inject constructor(
         }
     }
 
-    override suspend fun showData(): List<ItemsModel> {
+    override suspend fun showData(): Flow<List<ItemsModel>> {
         return withContext(Dispatchers.IO) {
             val itemsEntity = itemsDao.getItemsEntities()
-            itemsEntity.map {
-                ItemsModel(
-                    Random.nextInt(),
-                    it.personName,
-                    it.username,
-                    it.email,
-                    it.phone,
-                    it.website,
-                    it.street,
-                    it.suite,
-                    it.city,
-                    it.zipcode,
-                    it.lat,
-                    it.lng,
-                    it.companyName,
-                    it.catchPhrase,
-                    it.bs
-                )
+            itemsEntity.map { itemsList ->
+                itemsList.map { item ->
+                    ItemsModel(
+                        Random.nextInt(),
+                        item.personName,
+                        item.username,
+                        item.email,
+                        item.phone,
+                        item.website,
+                        item.street,
+                        item.suite,
+                        item.city,
+                        item.zipcode,
+                        item.lat,
+                        item.lng,
+                        item.companyName,
+                        item.catchPhrase,
+                        item.bs
+                    )
+                }
             }
         }
     }
@@ -144,6 +148,18 @@ class ItemsRepositoryImp @Inject constructor(
                     it.bs
                 )
             }
+        }
+    }
+
+    override suspend fun onDeleteItem(id: Int) {
+        return withContext(Dispatchers.IO){
+            itemsDao.deleteItemEntityById(id)
+        }
+    }
+
+    override suspend fun onDeleteFavorite(id: Int) {
+        return withContext(Dispatchers.IO){
+            itemsDao.deleteFavoriteEntityById(id)
         }
     }
 }

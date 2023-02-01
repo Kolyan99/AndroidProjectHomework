@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity(), MainView {
                 binding.bottomNavigation.visibility = VISIBLE
             }
         }
-
-
-
     }
 
     override fun userExistsResult(userExists: Boolean) {
