@@ -51,7 +51,7 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun showString(string: List<StringModel>) {
-        viwBinding.textView.toString()
+        viwBinding.textView.text = "$string"
     }
 }
 

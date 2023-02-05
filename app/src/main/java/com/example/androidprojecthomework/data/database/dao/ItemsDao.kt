@@ -37,6 +37,6 @@ interface ItemsDAO {
     @Insert
     fun insertStringEntity(stringEntity: StringEntity)
 
-    @Query("SELECT * FROM stringentity")
+    @Query("SELECT * FROM StringEntity")
     fun getStringEntities(): List<StringEntity>
 }
