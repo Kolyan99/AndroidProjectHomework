@@ -33,4 +33,10 @@ interface ItemsDAO {
 
     @Query("DELETE FROM FavoritesEntity WHERE id = :id")
     fun deleteFavoriteEntityById(id: Int)
+
+    @Insert
+    fun insertStringEntity(stringEntity: StringEntity)
+
+    @Query("SELECT * FROM stringentity")
+    fun getStringEntities(): List<StringEntity>
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentHomeBinding
+import com.example.androidprojecthomework.presentation.model.StringModel
 import com.example.androidprojecthomework.presentation.view.view.FavoritesFragment
 import com.example.androidprojecthomework.presentation.view.view.ItemsFragment
 import com.example.androidprojecthomework.utils.NavHelp.replaceGraph
@@ -36,21 +37,21 @@ class HomeFragment : Fragment(), HomeView {
 
         homePresenter.setView(this)
 
+        homePresenter.getString()
+
 
         viwBinding.btnHome.setOnClickListener {
            homePresenter.goItems()
         }
 
-        viwBinding.BtnFav.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, FavoritesFragment())
-                .commit()
-
-        }
     }
 
     override fun goItems(destanation: Int) {
         replaceGraph(destanation)
+    }
+
+    override fun showString(string: List<StringModel>) {
+        viwBinding.textView.toString()
     }
 }
 

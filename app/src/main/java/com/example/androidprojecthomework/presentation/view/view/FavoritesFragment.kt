@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentFavoritesBinding
@@ -47,8 +48,9 @@ class FavoritesFragment : Fragment(), FavoritesView, FavoritesListener  {
         viewBinding.recyclerView.layoutManager = LinearLayoutManager(context)
 
         favoritesPresenter.getFavorites()
-    }
 
+
+    }
 
     override fun favReceived(list: List<FavoritesModel>) {
         favoritesAdapter.submitList(list)
