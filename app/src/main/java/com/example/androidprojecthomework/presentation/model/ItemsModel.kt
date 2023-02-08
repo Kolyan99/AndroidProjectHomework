@@ -20,5 +20,5 @@ data class ItemsModel(
     val lng: String,
     val companyName: String,
     val catchPhrase: String,
-    val bs: String
+    val bs: String,
 )

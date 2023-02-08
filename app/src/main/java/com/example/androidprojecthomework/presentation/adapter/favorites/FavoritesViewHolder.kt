@@ -34,6 +34,7 @@ class FavoritesViewHolder(
 
 
         viewBinding.deleteFavorite.setOnClickListener {
+            viewBinding.deleteFavorite.isSelected = !it.isSelected
             favoritesListener.onDeleteFavorite(favItems.id)
         }
 

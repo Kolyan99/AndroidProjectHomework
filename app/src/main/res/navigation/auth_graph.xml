@@ -15,6 +15,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/slide_right"
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>

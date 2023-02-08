@@ -38,3 +38,4 @@ data class FavoritesEntity(
     @ColumnInfo(name ="lng")
     val lng: String,
 )
+

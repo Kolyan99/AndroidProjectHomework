@@ -47,6 +47,7 @@ class ItemsViewHolder(
         }
 
         viewBinding.btnFav.setOnClickListener {
+            viewBinding.btnFav.isSelected = !it.isSelected
             itemsListener.onFavClicked(itemsModel.id)
         }
 

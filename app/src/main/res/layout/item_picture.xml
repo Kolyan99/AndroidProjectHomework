@@ -40,7 +40,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/ic_add_fav"
+            android:background="@drawable/favorite_selected_backgroung"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/tv_bs" />
 
