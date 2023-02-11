@@ -21,4 +21,5 @@ data class ItemsModel(
     val companyName: String,
     val catchPhrase: String,
     val bs: String,
+    val isFavorite: Boolean
 )

@@ -70,7 +70,8 @@ class ItemsRepositoryImp @Inject constructor(
                         item.lng,
                         item.companyName,
                         item.catchPhrase,
-                        item.bs
+                        item.bs,
+                        item.isFavorite?: false
                     )
                 }
             }
@@ -95,13 +96,20 @@ class ItemsRepositoryImp @Inject constructor(
                 itemsEntity.lng,
                 itemsEntity.companyName,
                 itemsEntity.catchPhrase,
-                itemsEntity.bs
+                itemsEntity.bs,
+                itemsEntity.isFavorite?: false
             )
         }
     }
 
-    override suspend fun favClicked(itemsModel: ItemsModel) {
+    override suspend fun favClicked(itemsModel: ItemsModel, isFavorite: Boolean) {
         return withContext(Dispatchers.IO) {
+
+            itemsDao.addToFavorite(
+                itemsModel.id,
+                isFavorite
+            )
+
             itemsDao.insertFavoritesEntity(
                 FavoritesEntity(
                     itemsModel.id,
@@ -128,8 +136,8 @@ class ItemsRepositoryImp @Inject constructor(
     override suspend fun getFavorites(): Flow<List<FavoritesModel>> {
         return withContext(Dispatchers.IO) {
             val favoritesEntity = itemsDao.getFavoritesEntities()
-            favoritesEntity.map {favoriteList ->
-                favoriteList.map {favorite ->
+            favoritesEntity.map { favoriteList ->
+                favoriteList.map { favorite ->
                     FavoritesModel(
                         favorite.id,
                         favorite.personName,
@@ -153,13 +161,13 @@ class ItemsRepositoryImp @Inject constructor(
     }
 
     override suspend fun onDeleteItem(id: Int) {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             itemsDao.deleteItemEntityById(id)
         }
     }
 
     override suspend fun onDeleteFavorite(id: Int) {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             itemsDao.deleteFavoriteEntityById(id)
         }
     }

@@ -1,21 +1,20 @@
 package com.example.androidprojecthomework.presentation.view.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.androidprojecthomework.R
+import androidx.fragment.app.Fragment
+import com.example.androidprojecthomework.App
 import com.example.androidprojecthomework.databinding.FragmentHomeBinding
+import com.example.androidprojecthomework.di.PresentationModule
 import com.example.androidprojecthomework.presentation.model.StringModel
-import com.example.androidprojecthomework.presentation.view.view.FavoritesFragment
-import com.example.androidprojecthomework.presentation.view.view.ItemsFragment
 import com.example.androidprojecthomework.utils.NavHelp.replaceGraph
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class HomeFragment : Fragment(), HomeView {
+
 
     private var _viwBinding: FragmentHomeBinding? = null
     private val viwBinding get() = _viwBinding!!
@@ -34,6 +33,8 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         homePresenter.setView(this)
 

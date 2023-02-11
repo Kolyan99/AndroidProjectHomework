@@ -12,7 +12,7 @@ interface ItemsRepository {
 
     suspend fun findItemsEntityById(id: Int): ItemsModel
 
-    suspend fun favClicked(itemsModel: ItemsModel)
+    suspend fun favClicked(itemsModel: ItemsModel, isFavorite: Boolean)
 
     suspend fun getFavorites(): Flow<List<FavoritesModel>>
 

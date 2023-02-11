@@ -1,24 +1,26 @@
 package com.example.androidprojecthomework.presentation.view.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
-import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
+import com.example.androidprojecthomework.App
 import com.example.androidprojecthomework.databinding.FragmentItemsBinding
+import com.example.androidprojecthomework.di.PresentationModule
 import com.example.androidprojecthomework.presentation.adapter.items.ItemsAdapter
 import com.example.androidprojecthomework.presentation.adapter.listener.ItemsListener
 import com.example.androidprojecthomework.presentation.model.ItemsModel
+import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
+import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.utils.NavHelp.navigateWithBundel
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class ItemsFragment : Fragment(), ItemsListener, ItemsView {
+
 
     @Inject
     lateinit var itemsPresenter: ItemsPresenter
@@ -39,6 +41,8 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         itemsPresenter.setView(this)
 
@@ -90,8 +94,8 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
             bs)
     }
 
-    override fun onFavClicked(id: Int) {
-        itemsPresenter.onFavClicked(id)
+    override fun onFavClicked(id: Int, isFavorite: Boolean) {
+        itemsPresenter.onFavClicked(id, isFavorite)
     }
 
     override fun onDeleteItem(id: Int) {

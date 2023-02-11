@@ -89,14 +89,14 @@ class ItemsPresenter @Inject constructor(
     }
 
 
-    fun onFavClicked(id: Int) {
+    fun onFavClicked(id: Int, isFavorite: Boolean) {
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.w("exception", exception)
         }
         CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
             val job = launch {
                 try {
-                    itemsInteractor.onFavClicked(id)
+                    itemsInteractor.onFavClicked(id, isFavorite)
                 } catch (e: Exception) {
                     Log.w("Exception", "No id")
                 }

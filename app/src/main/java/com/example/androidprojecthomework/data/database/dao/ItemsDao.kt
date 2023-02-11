@@ -22,6 +22,9 @@ interface ItemsDAO {
     @Query("SELECT * FROM itemsEntity WHERE id=:searchText ")
     fun findItemsEntityById(searchText: Int): ItemsEntity
 
+    @Query("UPDATE itemsEntity SET isFavorite = :isFavorite WHERE id = :id ")
+    fun addToFavorite(id: Int, isFavorite: Boolean)
+
     @Query("DELETE FROM itemsEntity WHERE id =:id")
     fun deleteItemEntityById(id: Int)
 

@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.androidprojecthomework.App
 import com.example.androidprojecthomework.R
 import com.example.androidprojecthomework.databinding.FragmentLoginBinding
-import com.example.androidprojecthomework.utils.NavHelp.navigate
-import com.example.androidprojecthomework.utils.NavHelp.navigateWithDeleteBackStack
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.androidprojecthomework.di.PresentationModule
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class LoginFragment : Fragment(), LoginView {
+
 
     private var _viewBinding: FragmentLoginBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -33,6 +33,8 @@ class LoginFragment : Fragment(), LoginView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         loginPresenter.setView(this)
 

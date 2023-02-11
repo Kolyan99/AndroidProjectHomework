@@ -11,15 +11,12 @@ import com.example.androidprojecthomework.domain.items.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
 @Module
-@InstallIn(SingletonComponent::class)
+
 abstract class DataModule {
 
     @Binds
@@ -38,7 +35,7 @@ abstract class DataModule {
 
         @Provides
         fun provideSharedPreferences(
-            @ApplicationContext context: Context
+             context: Context
         ): SharedPrefersHelp{
             return SharedPrefersHelp(
                 context.getSharedPreferences(SP_KEY, MODE_PRIVATE)

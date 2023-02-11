@@ -46,9 +46,11 @@ class ItemsViewHolder(
             )
         }
 
+        viewBinding.btnFav.isSelected = itemsModel.isFavorite
+
         viewBinding.btnFav.setOnClickListener {
             viewBinding.btnFav.isSelected = !it.isSelected
-            itemsListener.onFavClicked(itemsModel.id)
+            itemsListener.onFavClicked(itemsModel.id, it.isSelected)
         }
 
         viewBinding.deleteItem.setOnClickListener {

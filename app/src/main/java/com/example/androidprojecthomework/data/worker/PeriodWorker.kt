@@ -2,11 +2,9 @@ package com.example.androidprojecthomework.data.worker
 
 import android.content.Context
 import android.util.Log
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.androidprojecthomework.data.auth.AuthRepositoryImpl
-import com.example.androidprojecthomework.data.items.ItemsRepositoryImp
 import com.example.androidprojecthomework.presentation.model.StringModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -14,7 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@HiltWorker
+
 class PeriodWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted params: WorkerParameters,

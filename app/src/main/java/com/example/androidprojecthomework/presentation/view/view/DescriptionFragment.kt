@@ -1,22 +1,22 @@
 package com.example.androidprojecthomework.presentation.view.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.androidprojecthomework.App
+import com.example.androidprojecthomework.databinding.FragmentDescriptionBinding
+import com.example.androidprojecthomework.di.PresentationModule
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_ImageView
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
-import com.example.androidprojecthomework.R
-import com.example.androidprojecthomework.databinding.FragmentDescriptionBinding
-import com.example.androidprojecthomework.presentation.view.auth.LoginFragment
 import com.example.androidprojecthomework.utils.NavHelp.replaceGraph
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class DescriptionFragment : Fragment(), DescriptionView {
+
 
     private var _viewBinding: FragmentDescriptionBinding? = null
     private val viewBinding get() = _viewBinding!!
@@ -35,6 +35,8 @@ class DescriptionFragment : Fragment(), DescriptionView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity().applicationContext as App).provideAppComponent().inject(this)
 
         descriptionPresenter.setView(this)
 

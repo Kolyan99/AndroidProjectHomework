@@ -37,6 +37,8 @@ data class ItemsEntity(
     val lat: String,
     @ColumnInfo(name ="lng")
     val lng: String,
+    @ColumnInfo(name = "isFavorite")
+    val isFavorite: Boolean?=false
 )
 
 

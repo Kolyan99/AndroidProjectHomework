@@ -22,7 +22,7 @@ interface ItemsListener {
         bs: String
     )
 
-    fun onFavClicked(id: Int)
+    fun onFavClicked(id: Int, isFavorite: Boolean)
 
     fun onDeleteItem(id: Int)
 
