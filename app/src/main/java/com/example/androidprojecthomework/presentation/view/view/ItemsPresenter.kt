@@ -7,6 +7,7 @@ import com.example.androidprojecthomework.data.model.Company
 import com.example.androidprojecthomework.data.model.Geo
 import com.example.androidprojecthomework.domain.items.ItemsInteractor
 import com.google.gson.annotations.SerializedName
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,8 @@ class ItemsPresenter @Inject constructor(
     private val itemsInteractor: ItemsInteractor
 ) {
 
+    private val compositeDisposable = CompositeDisposable()
+
     private lateinit var itemsView: ItemsView
 
     fun setView(itemsFragment: ItemsFragment) {
@@ -24,105 +27,134 @@ class ItemsPresenter @Inject constructor(
     }
 
     fun getItems() {
+        try {
+            val d = itemsInteractor.getData().subscribe({
 
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.w("exception", exception)
+            }, {
+
+            })
+
+            compositeDisposable.add(d)
+            val dd = itemsInteractor.showData().subscribe({
+                Log.w("sub", it.toString())
+                itemsView.itemsReceived(it)
+            }, {
+
+            })
+            compositeDisposable.add(dd)
+        }catch (e: Exception){
+            Log.w("error", "error")
         }
-        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
-            val job = launch {
-                try {
-                    itemsInteractor.getData()
-                    val itemsModel = itemsInteractor.showData()
-                    itemsModel.collect{
-                        itemsView.itemsReceived(it)
+
+
+
+
+
+
+
+//    fun getItems() {
+//
+//        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+//            Log.w("exception", exception)
+//        }
+//        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
+//            val job = launch {
+//                try {
+//                    itemsInteractor.getData()
+//                    val itemsModel = itemsInteractor.showData()
+//                    itemsModel.collect{
+//                        itemsView.itemsReceived(it)
+//                    }
+//                } catch (e: Exception) {
+//                    Log.w("exception", "No cars")
+//                }
+//            }
+//            job.join()
+//            job.cancel()
+//        }
+//
+    }
+
+            fun imageViewClicked() {
+                itemsView.imageViewClick(R.string.image_click)
+            }
+
+            fun itemClicked(
+                id: Int,
+                personName: String,
+                username: String,
+                email: String,
+                phone: String,
+                website: String,
+                street: String,
+                suite: String,
+                city: String,
+                zipcode: String,
+                lat: String,
+                lng: String,
+                companyName: String,
+                catchPhrase: String,
+                bs: String,
+            ) {
+                itemsView.itemsClicked(
+                    NavigateWithBundel(
+                        id,
+                        personName,
+                        username,
+                        email,
+                        phone,
+                        website,
+                        street,
+                        suite,
+                        city,
+                        zipcode,
+                        lat,
+                        lng,
+                        companyName,
+                        catchPhrase,
+                        bs
+                    ), R.id.action_itemsFragment_to_descriptionFragment
+                )
+            }
+
+
+            fun onFavClicked(id: Int, isFavorite: Boolean) {
+                val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+                    Log.w("exception", exception)
+                }
+                CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
+                    val job = launch {
+                        try {
+                            itemsInteractor.onFavClicked(id, isFavorite)
+                        } catch (e: Exception) {
+                            Log.w("Exception", "No id")
+                        }
                     }
-                } catch (e: Exception) {
-                    Log.w("exception", "No cars")
+                    job.join()
+                    job.cancel()
                 }
             }
-            job.join()
-            job.cancel()
-        }
 
-    }
-
-    fun imageViewClicked() {
-        itemsView.imageViewClick(R.string.image_click)
-    }
-
-    fun itemClicked(
-        id: Int,
-        personName: String,
-        username: String,
-        email: String,
-        phone: String,
-        website: String,
-        street: String,
-        suite: String,
-        city: String,
-        zipcode: String,
-        lat: String,
-        lng: String,
-        companyName: String,
-        catchPhrase: String,
-        bs: String,
-    ) {
-        itemsView.itemsClicked(
-            NavigateWithBundel(
-                id,
-                personName,
-                username,
-                email,
-                phone,
-                website,
-                street,
-                suite,
-                city,
-                zipcode,
-                lat,
-                lng,
-                companyName,
-                catchPhrase,
-                bs
-            ), R.id.action_itemsFragment_to_descriptionFragment
-        )
-    }
-
-
-    fun onFavClicked(id: Int, isFavorite: Boolean) {
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.w("exception", exception)
-        }
-        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
-            val job = launch {
-                try {
-                    itemsInteractor.onFavClicked(id, isFavorite)
-                } catch (e: Exception) {
-                    Log.w("Exception", "No id")
+            fun onDeleteItem(id: Int) {
+                val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+                    Log.w("exception", exception)
+                }
+                CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler) {
+                    val job = launch {
+                        try {
+                            itemsInteractor.onDeleteItem(id)
+                        } catch (e: Exception) {
+                            Log.w("Exception", "exception")
+                        }
+                    }
+                    job.join()
+                    job.cancel()
                 }
             }
-            job.join()
-            job.cancel()
         }
-    }
 
-    fun onDeleteItem(id: Int){
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.w("exception", exception)
-        }
-        CoroutineScope(Dispatchers.Main).launch(coroutineExceptionHandler){
-            val job = launch {
-                try {
-                    itemsInteractor.onDeleteItem(id)
-                }catch (e: Exception){
-                    Log.w("Exception", "exception")
-                }
-            }
-            job.join()
-            job.cancel()
-        }
-    }
-}
+
+
 
 data class NavigateWithBundel(
     val id: Int,

@@ -16,11 +16,13 @@ import com.example.androidprojecthomework.presentation.model.ItemsModel
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Date
 import com.example.androidprojecthomework.utils.AppConstrants.Companion.Text_Name
 import com.example.androidprojecthomework.utils.NavHelp.navigateWithBundel
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 
 class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
+    private val compositeDisposable = CompositeDisposable()
 
     @Inject
     lateinit var itemsPresenter: ItemsPresenter
@@ -53,6 +55,11 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
         itemsPresenter.getItems()
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
     }
 
 
@@ -118,4 +125,5 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
         //detailsFragment.arguments = bundel
         navigateWithBundel(destination, bundel)
     }
+
 }

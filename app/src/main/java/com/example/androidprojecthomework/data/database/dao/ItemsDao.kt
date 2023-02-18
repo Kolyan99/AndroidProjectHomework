@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.example.androidprojecthomework.data.database.FavoritesEntity
 import com.example.androidprojecthomework.data.database.ItemsEntity
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,10 +15,10 @@ interface ItemsDAO {
     fun insertItemsEntity(itemsEntity: ItemsEntity)
 
     @Query("SELECT * FROM itemsEntity")
-    fun getItemsEntities(): Flow<List<ItemsEntity>>
+    fun getItemsEntities(): Observable<List<ItemsEntity>>
 
     @Query("SELECT(SELECT COUNT(*) FROM itemsEntity) !=0")
-    fun doesItemsEntityExist(): Boolean
+    fun doesItemsEntityExist(): Observable<Boolean>
 
     @Query("SELECT * FROM itemsEntity WHERE id=:searchText ")
     fun findItemsEntityById(searchText: Int): ItemsEntity

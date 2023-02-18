@@ -7,6 +7,11 @@ import com.example.androidprojecthomework.data.database.dao.ItemsDAO
 import com.example.androidprojecthomework.domain.items.ItemsRepository
 import com.example.androidprojecthomework.presentation.model.FavoritesModel
 import com.example.androidprojecthomework.presentation.model.ItemsModel
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -19,63 +24,79 @@ class ItemsRepositoryImp @Inject constructor(
     private val itemsDao: ItemsDAO
 ) : ItemsRepository {
 
-    override suspend fun getData() {
-        return withContext(Dispatchers.IO) {
+    private val compositeDisposable = CompositeDisposable()
 
-            if (!itemsDao.doesItemsEntityExist()) {
-                val response = apiService.getData()
-                response.body()?.let {
-                    it.map {
-                        val itemsEntity = ItemsEntity(
-                            it.id,
-                            it.personName,
-                            it.username,
-                            it.email,
-                            it.phone,
-                            it.website,
-                            it.address.street,
-                            it.address.suite,
-                            it.address.city,
-                            it.address.zipcode,
-                            it.address.geo.lat,
-                            it.address.geo.lng,
-                            it.company.companyName,
-                            it.company.catchPhrase,
-                            it.company.bs
-                        )
-                        itemsDao.insertItemsEntity(itemsEntity)
+    override  fun getData() : Completable {
+        return Completable.defer {
+             itemsDao.doesItemsEntityExist()
+                .subscribeOn(Schedulers.io())
+                .doAfterNext {
+                    if (!it) {
+                        val response = apiService.getData()
+                        val getData = response.subscribeOn(Schedulers.io())
+                            .doOnSuccess() {
+                                it.let {
+                                    itemsDao.insertItemsEntity(
+                                        ItemsEntity(
+                                            it.id,
+                                            it.personName,
+                                            it.username,
+                                            it.email,
+                                            it.phone,
+                                            it.website,
+                                            it.address.street,
+                                            it.address.suite,
+                                            it.address.city,
+                                            it.address.zipcode,
+                                            it.address.geo.lat,
+                                            it.address.geo.lng,
+                                            it.company.companyName,
+                                            it.company.catchPhrase,
+                                            it.company.bs
+                                        )
+                                    )
+                                }
+                            }
+                            .ignoreElement()
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe()
+                        compositeDisposable.add(getData)
                     }
                 }
-            }
+                .ignoreElements()
+                .observeOn(Schedulers.io())
         }
     }
 
-    override suspend fun showData(): Flow<List<ItemsModel>> {
-        return withContext(Dispatchers.IO) {
-            val itemsEntity = itemsDao.getItemsEntities()
-            itemsEntity.map { itemsList ->
-                itemsList.map { item ->
+
+
+    override fun showData(): Observable<List<ItemsModel>> {
+        return itemsDao.getItemsEntities()
+            .subscribeOn(Schedulers.io())
+            .map { list ->
+                list.map {
                     ItemsModel(
-                        item.id,
-                        item.personName,
-                        item.username,
-                        item.email,
-                        item.phone,
-                        item.website,
-                        item.street,
-                        item.suite,
-                        item.city,
-                        item.zipcode,
-                        item.lat,
-                        item.lng,
-                        item.companyName,
-                        item.catchPhrase,
-                        item.bs,
-                        item.isFavorite?: false
+                        it.id,
+                        it.personName,
+                        it.username,
+                        it.email,
+                        it.phone,
+                        it.website,
+                        it.street,
+                        it.suite,
+                        it.city,
+                        it.zipcode,
+                        it.lat,
+                        it.lng,
+                        it.companyName,
+                        it.catchPhrase,
+                        it.bs,
+                        it.isFavorite ?: false
                     )
                 }
             }
-        }
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override suspend fun findItemsEntityById(id: Int): ItemsModel {
@@ -97,7 +118,7 @@ class ItemsRepositoryImp @Inject constructor(
                 itemsEntity.companyName,
                 itemsEntity.catchPhrase,
                 itemsEntity.bs,
-                itemsEntity.isFavorite?: false
+                itemsEntity.isFavorite ?: false
             )
         }
     }
